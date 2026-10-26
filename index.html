@@ -1964,14 +1964,15 @@
         </svg>
         <h3 class="font-poppins font-bold text-lg text-blue-900">Carrito de Promociones</h3>
       </div>
-      <!-- Botón de Cerrar Carrito con 'X' SVG (Hitbox grande y z-[100]) -->
+      <!-- Botón de Cerrar Carrito (Círculo blanco con 'X' roja e inline onclick) -->
       <button 
         type="button" 
         id="btn-cerrar-carrito" 
+        onclick="document.getElementById('cart-drawer').classList.add('translate-x-full'); document.getElementById('cart-drawer').classList.remove('translate-x-0'); document.getElementById('cart-drawer-backdrop').classList.add('hidden'); document.body.classList.remove('overflow-hidden');" 
         aria-label="Cerrar carrito" 
-        class="p-3 w-12 h-12 z-[100] relative flex items-center justify-center rounded-full hover:bg-gray-100 cursor-pointer active:scale-95 transition-all text-slate-600 hover:text-red-600 focus:outline-none"
+        class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md text-red-600 hover:text-red-700 hover:bg-gray-50 cursor-pointer z-[99999] pointer-events-auto border border-gray-100 transition-all focus:outline-none"
       >
-        <svg class="w-6 h-6 stroke-[2] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 stroke-[2] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
@@ -2003,21 +2004,22 @@
        MODAL DE DETALLES DEL PRODUCTO (Especificaciones, Medidas y WhatsApp)
        ========================================== -->
   <div id="product-detail-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4 sm:p-6 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-product-title">
-    <div class="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200">
+    <div class="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-slate-100 my-auto animate-in fade-in zoom-in-95 duration-200">
       
-      <!-- Botón de Cerrar Modal (Hitbox grande y z-[100]) -->
+      <!-- Botón de Cerrar Modal (Círculo blanco con 'X' roja sobresaliente y z-[99999]) -->
       <button 
         type="button" 
         id="btn-cerrar-modal" 
+        onclick="document.getElementById('product-detail-modal').classList.add('hidden'); document.getElementById('product-detail-modal').classList.remove('flex'); document.body.classList.remove('overflow-hidden');" 
         aria-label="Cerrar modal" 
-        class="p-3 w-12 h-12 absolute top-2 right-2 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-sm shadow-md cursor-pointer z-[100] text-slate-700 hover:text-red-600 hover:bg-white active:scale-95 transition-all focus:outline-none"
+        class="absolute -top-4 -right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xl text-red-600 hover:text-red-700 hover:bg-gray-50 cursor-pointer z-[99999] pointer-events-auto border border-gray-100"
       >
-        <svg class="w-6 h-6 stroke-[2] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 stroke-[2] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
 
-      <div class="grid grid-cols-1 md:grid-cols-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 rounded-3xl overflow-hidden">
         <!-- Columna Izquierda: Galería de Fotos del Mueble -->
         <div class="bg-slate-100 p-5 sm:p-6 flex flex-col justify-between">
           
@@ -3338,38 +3340,7 @@
       document.body.classList.remove('overflow-hidden');
     }
 
-    // ==========================================
-    // DELEGACIÓN DE EVENTOS GLOBAL PARA CIERRE DE MODALES
-    // ==========================================
-    document.addEventListener('click', (e) => {
-      // Cerrar Carrito
-      const btnCerrarCarrito = e.target.closest('#btn-cerrar-carrito');
-      if (btnCerrarCarrito) {
-        e.preventDefault();
-        const carritoModal = document.getElementById('cart-drawer');
-        if (carritoModal) {
-          carritoModal.classList.remove('translate-x-0');
-          carritoModal.classList.add('translate-x-full');
-        }
-        const cartBackdrop = document.getElementById('cart-drawer-backdrop');
-        if (cartBackdrop) {
-          cartBackdrop.classList.add('hidden');
-        }
-        document.body.classList.remove('overflow-hidden');
-      }
 
-      // Cerrar Modal de Producto
-      const btnCerrarModal = e.target.closest('#btn-cerrar-modal');
-      if (btnCerrarModal) {
-        e.preventDefault();
-        const productoModal = document.getElementById('product-detail-modal');
-        if (productoModal) {
-          productoModal.classList.add('hidden');
-          productoModal.classList.remove('flex');
-        }
-        document.body.classList.remove('overflow-hidden');
-      }
-    });
 
 
 
