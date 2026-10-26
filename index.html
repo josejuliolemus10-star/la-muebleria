@@ -108,7 +108,7 @@
           <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-red-600 rounded-full transition-all duration-300 group-hover:w-full"></span>
         </a>
         <a href="#coleccion" class="relative py-1 hover:text-red-600 transition-colors group">
-          Línea Blanca
+          Para tu casa
           <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-red-600 rounded-full transition-all duration-300 group-hover:w-full"></span>
         </a>
         <a href="#contacto" class="relative py-1 hover:text-red-600 transition-colors group">
@@ -159,7 +159,7 @@
       <a href="#hero" class="block text-base font-semibold text-red-600 py-1.5">Inicio</a>
       <a href="#categorias" class="block text-base font-medium text-slate-700 hover:text-red-600 py-1.5">Categorías</a>
       <a href="#productos" class="block text-base font-medium text-slate-700 hover:text-red-600 py-1.5">Promociones</a>
-      <a href="#coleccion" class="block text-base font-medium text-slate-700 hover:text-red-600 py-1.5">Moderniza tu Casa</a>
+      <a href="#coleccion" class="block text-base font-medium text-slate-700 hover:text-red-600 py-1.5">Para tu casa</a>
       <a href="#contacto" class="block text-base font-medium text-slate-700 hover:text-red-600 py-1.5">Contacto</a>
     </div>
   </header>
@@ -2981,25 +2981,47 @@
        MODALES & INTERACCIONES
        ========================================== -->
 
-  <!-- Modal de Búsqueda -->
-  <div id="search-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-start justify-center pt-24 px-4 transition-opacity">
-    <div class="bg-white rounded-3xl p-6 w-full max-w-2xl shadow-2xl border border-slate-200">
+  <!-- Modal de Búsqueda con Sugerencias en Vivo -->
+  <div id="search-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-start justify-center pt-16 sm:pt-24 px-4 transition-opacity" role="dialog" aria-modal="true" aria-label="Buscador de productos">
+    <div class="bg-white rounded-3xl p-5 sm:p-6 w-full max-w-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[85vh]">
+      
+      <!-- Input de búsqueda -->
       <div class="flex items-center justify-between border-b border-slate-200 pb-4">
         <div class="flex items-center gap-3 w-full">
-          <svg class="w-5 h-5 text-red-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 text-red-600 stroke-[2] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
           </svg>
-          <input id="search-input" type="text" placeholder="Buscar salas, camas, roperos o comedores..." class="w-full text-base sm:text-lg font-poppins focus:outline-none text-slate-800 placeholder-slate-400">
+          <input 
+            id="search-input" 
+            type="text" 
+            placeholder="Buscar por mueble o ambiente (ej. sala, cama, ropero)..." 
+            autocomplete="off"
+            class="w-full text-base sm:text-lg font-poppins focus:outline-none text-slate-800 placeholder-slate-400 bg-transparent"
+          >
         </div>
-        <button id="close-search" class="p-2 text-slate-600 hover:text-red-600 focus:outline-none">
+        <button id="close-search" aria-label="Cerrar buscador" class="p-2 text-slate-400 hover:text-red-600 focus:outline-none transition-colors">
           <svg class="w-5 h-5 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
-      <div class="pt-4 text-xs text-slate-500 font-inter">
-        Populares: Silla Siena beige, Cama Sueño Matrimonial, Combo Descanso, Ropero Fiesta
+
+      <!-- Contenedor de Resultados / Sugerencias en Vivo (Dropdown) -->
+      <div id="search-results-dropdown" class="mt-3 overflow-y-auto max-h-[50vh] divide-y divide-slate-100 hidden">
+        <!-- Inyectado dinámicamente con JavaScript en tiempo real -->
       </div>
+
+      <!-- Búsquedas sugeridas -->
+      <div id="search-popular-tags" class="pt-4 text-xs text-slate-500 font-inter flex flex-wrap items-center gap-1.5 border-t border-slate-100 mt-2">
+        <span class="text-slate-400 font-medium">Sugerencias rápidas:</span>
+        <button type="button" onclick="selectSearchTerm('Cama')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-red-50 hover:text-red-600 transition-colors">Camas</button>
+        <button type="button" onclick="selectSearchTerm('Sala')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-red-50 hover:text-red-600 transition-colors">Salas</button>
+        <button type="button" onclick="selectSearchTerm('Comedor')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-red-50 hover:text-red-600 transition-colors">Comedores</button>
+        <button type="button" onclick="selectSearchTerm('Ropero')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-red-50 hover:text-red-600 transition-colors">Roperos</button>
+        <button type="button" onclick="selectSearchTerm('Cocina')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-red-50 hover:text-red-600 transition-colors">Cocinas</button>
+        <button type="button" onclick="selectSearchTerm('Combo')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-red-50 hover:text-red-600 transition-colors">Combos</button>
+      </div>
+
     </div>
   </div>
 
@@ -3902,30 +3924,269 @@
       }
     });
 
-    // Modal de Búsqueda
+    // ==========================================
+    // BUSCADOR EN VIVO (SUGERENCIAS Y FILTRO EN CATÁLOGO)
+    // ==========================================
     const searchBtn = document.getElementById('search-btn');
     const searchModal = document.getElementById('search-modal');
     const closeSearch = document.getElementById('close-search');
     const searchInput = document.getElementById('search-input');
+    const searchResultsDropdown = document.getElementById('search-results-dropdown');
+    const searchPopularTags = document.getElementById('search-popular-tags');
 
-    if (searchBtn && searchModal && closeSearch && searchInput) {
-      searchBtn.addEventListener('click', () => {
-        searchModal.classList.remove('hidden');
-        searchModal.classList.add('flex');
+    function openSearchModal() {
+      if (!searchModal) return;
+      searchModal.classList.remove('hidden');
+      searchModal.classList.add('flex');
+      if (searchInput) {
+        searchInput.value = '';
         searchInput.focus();
-      });
+      }
+      if (searchResultsDropdown) {
+        searchResultsDropdown.innerHTML = '';
+        searchResultsDropdown.classList.add('hidden');
+      }
+      if (searchPopularTags) {
+        searchPopularTags.classList.remove('hidden');
+      }
+    }
 
-      closeSearch.addEventListener('click', () => {
-        searchModal.classList.add('hidden');
-        searchModal.classList.remove('flex');
-      });
+    function closeSearchModal() {
+      if (!searchModal) return;
+      searchModal.classList.add('hidden');
+      searchModal.classList.remove('flex');
+    }
 
+    if (searchBtn) searchBtn.addEventListener('click', openSearchModal);
+    if (closeSearch) closeSearch.addEventListener('click', closeSearchModal);
+
+    if (searchModal) {
       searchModal.addEventListener('click', (e) => {
         if (e.target === searchModal) {
-          searchModal.classList.add('hidden');
-          searchModal.classList.remove('flex');
+          closeSearchModal();
         }
       });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && searchModal && !searchModal.classList.contains('hidden')) {
+        closeSearchModal();
+      }
+    });
+
+    // Evento input: Búsqueda en tiempo real con sugerencias
+    if (searchInput && searchResultsDropdown) {
+      searchInput.addEventListener('input', () => {
+        const query = searchInput.value.trim().toLowerCase();
+
+        if (query.length === 0) {
+          searchResultsDropdown.classList.add('hidden');
+          searchResultsDropdown.innerHTML = '';
+          if (searchPopularTags) searchPopularTags.classList.remove('hidden');
+          return;
+        }
+
+        if (searchPopularTags) searchPopularTags.classList.add('hidden');
+        searchResultsDropdown.classList.remove('hidden');
+
+        // Filtrar array de productos (por título o categoría)
+        const allProducts = Object.values(PRODUCTS_DATA);
+        const matches = allProducts.filter(p => {
+          return p.title.toLowerCase().includes(query) ||
+                 p.category.toLowerCase().includes(query) ||
+                 p.categoryLabel.toLowerCase().includes(query) ||
+                 p.description.toLowerCase().includes(query);
+        });
+
+        // Si no hay resultados que coincidan
+        if (matches.length === 0) {
+          searchResultsDropdown.innerHTML = `
+            <div class="py-8 text-center text-slate-500 font-inter">
+              <svg class="w-10 h-10 mx-auto text-slate-300 stroke-[1.5] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+              </svg>
+              <p class="font-poppins font-medium text-sm text-slate-700">No se encontraron coincidencias.</p>
+              <p class="text-xs text-slate-400 mt-1">Prueba con palabras como "cama", "sala", "ropero", "cocina" o "comedor".</p>
+            </div>
+          `;
+          return;
+        }
+
+        // Renderizar coincidencias con miniatura, título y precio
+        let dropdownHtml = '';
+        matches.forEach(p => {
+          dropdownHtml += `
+            <div onclick="selectSuggestion('${p.id}')" class="flex items-center gap-3.5 p-3 rounded-2xl hover:bg-red-50/60 cursor-pointer transition-colors group">
+              <img src="${p.image}" alt="${p.title}" class="w-14 h-14 rounded-xl object-cover border border-slate-100 flex-shrink-0 group-hover:scale-105 transition-transform duration-200">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-red-600 bg-red-100/60 px-2 py-0.5 rounded-full font-inter">
+                    ${p.categoryLabel}
+                  </span>
+                </div>
+                <p class="font-poppins font-semibold text-sm text-slate-900 group-hover:text-red-600 transition-colors truncate mt-0.5">
+                  ${p.title}
+                </p>
+                <span class="text-xs text-slate-400 font-inter">Medidas: ${p.medidasText}</span>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <span class="block text-xs text-slate-400 line-through font-inter">${p.originalPrice}</span>
+                <span class="font-poppins font-bold text-sm sm:text-base text-red-600">${p.price}</span>
+              </div>
+            </div>
+          `;
+        });
+
+        searchResultsDropdown.innerHTML = dropdownHtml;
+      });
+
+      // Acción al presionar "Enter"
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const query = searchInput.value.trim();
+          if (query) {
+            executeSearch(query);
+          }
+        }
+      });
+    }
+
+    // Filtrar catálogo principal y scroll suave
+    function executeSearch(query) {
+      const cleanQuery = query.trim().toLowerCase();
+      if (!cleanQuery) return;
+
+      // a) Cerrar modal del buscador
+      closeSearchModal();
+
+      // b) Filtrar la cuadrícula principal de productos
+      const cards = document.querySelectorAll('.product-card');
+      const activePill = document.getElementById('active-category-pill');
+      const countBadge = document.getElementById('products-count-badge');
+      const noProductsMsg = document.getElementById('no-products-msg');
+      let matchCount = 0;
+
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        const circle = btn.querySelector('.cat-circle');
+        const label = btn.querySelector('.cat-label');
+        if (circle) {
+          circle.classList.remove('border-red-600', 'ring-4', 'ring-red-100', 'shadow-md');
+          circle.classList.add('border-transparent');
+        }
+        if (label) {
+          label.classList.remove('text-red-600', 'font-bold');
+          label.classList.add('text-slate-800', 'font-medium');
+        }
+      });
+
+      cards.forEach(card => {
+        const prodId = card.getAttribute('data-product-id');
+        const prod = PRODUCTS_DATA[prodId];
+        let isMatch = false;
+
+        if (prod) {
+          isMatch = prod.title.toLowerCase().includes(cleanQuery) ||
+                    prod.category.toLowerCase().includes(cleanQuery) ||
+                    prod.categoryLabel.toLowerCase().includes(cleanQuery) ||
+                    prod.description.toLowerCase().includes(cleanQuery);
+        } else {
+          isMatch = card.textContent.toLowerCase().includes(cleanQuery);
+        }
+
+        if (isMatch) {
+          card.classList.remove('hidden');
+          matchCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (activePill) {
+        activePill.textContent = `Búsqueda: "${query}"`;
+      }
+      if (countBadge) {
+        countBadge.textContent = `${matchCount} ${matchCount === 1 ? 'producto' : 'productos'}`;
+      }
+
+      if (noProductsMsg) {
+        if (matchCount === 0) {
+          noProductsMsg.classList.remove('hidden');
+        } else {
+          noProductsMsg.classList.add('hidden');
+        }
+      }
+
+      // c) Scroll suave hacia la sección del catálogo
+      const productosSection = document.getElementById('productos');
+      if (productosSection) {
+        productosSection.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      showToast(`Mostrando ${matchCount} resultados para "${query}"`);
+    }
+
+    // Acción al hacer clic en una sugerencia
+    function selectSuggestion(productId) {
+      const prod = PRODUCTS_DATA[productId];
+      if (!prod) return;
+
+      // a) Cerrar modal del buscador
+      closeSearchModal();
+
+      // b) Filtrar la cuadrícula principal para mostrar el producto seleccionado
+      const cards = document.querySelectorAll('.product-card');
+      const activePill = document.getElementById('active-category-pill');
+      const countBadge = document.getElementById('products-count-badge');
+      const noProductsMsg = document.getElementById('no-products-msg');
+
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        const circle = btn.querySelector('.cat-circle');
+        const label = btn.querySelector('.cat-label');
+        if (circle) {
+          circle.classList.remove('border-red-600', 'ring-4', 'ring-red-100', 'shadow-md');
+          circle.classList.add('border-transparent');
+        }
+        if (label) {
+          label.classList.remove('text-red-600', 'font-bold');
+          label.classList.add('text-slate-800', 'font-medium');
+        }
+      });
+
+      cards.forEach(card => {
+        const pId = card.getAttribute('data-product-id');
+        if (pId === productId) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (activePill) {
+        activePill.textContent = `Producto: ${prod.title}`;
+      }
+      if (countBadge) {
+        countBadge.textContent = '1 producto';
+      }
+      if (noProductsMsg) {
+        noProductsMsg.classList.add('hidden');
+      }
+
+      // c) Scroll suave hacia la sección del catálogo
+      const productosSection = document.getElementById('productos');
+      if (productosSection) {
+        productosSection.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Abrir modal de detalles del producto para ver especificaciones y WhatsApp
+      setTimeout(() => {
+        openProductModal(productId);
+      }, 400);
+    }
+
+    function selectSearchTerm(term) {
+      if (searchInput) searchInput.value = term;
+      executeSearch(term);
     }
 
     // ==========================================
