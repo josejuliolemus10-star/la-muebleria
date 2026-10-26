@@ -192,7 +192,7 @@
   <!-- ==========================================
        1. NAVBAR (Limpio con Logo en Rojo)
        ========================================== -->
-  <header id="main-navbar" class="sticky top-0 z-40 w-full transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-slate-200">
+  <header id="main-navbar" class="sticky top-0 z-[100] w-full transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-3 sm:px-8 lg:px-12 h-20 flex items-center justify-between gap-2">
       
       <!-- Logo Tipográfico Responsivo en Rojo Vivo a la izquierda con Lilita One -->
@@ -229,15 +229,15 @@
         </a>
       </nav>
 
-      <!-- Iconos SVG a la derecha: Lupa, Corazón, Carrito (Hitbox aumentado, relative z-[60] y pointer-events-none) -->
-      <div class="relative z-[60] flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
+      <!-- Iconos SVG a la derecha: Lupa, Corazón, Carrito (Hitbox aumentado, relative z-[100] y pointer-events-none) -->
+      <div class="relative z-[100] flex items-center space-x-1 sm:space-x-2 flex-shrink-0 pointer-events-auto">
         <!-- Buscador -->
         <button 
           type="button" 
           id="search-btn" 
-          onclick="document.getElementById('search-modal').classList.toggle('hidden'); const sm = document.getElementById('search-modal'); if(!sm.classList.contains('hidden')){ sm.classList.add('flex'); const si = document.getElementById('search-input'); if(si) si.focus(); } else { sm.classList.remove('flex'); }" 
+          onclick="openSearchModal(); const sm=document.getElementById('search-modal'); if(sm){sm.classList.remove('hidden');sm.classList.add('flex');document.body.classList.add('overflow-hidden');const si=document.getElementById('search-input');if(si){si.value='';setTimeout(()=>si.focus(),100);}}" 
           aria-label="Abrir buscador" 
-          class="p-3 relative z-[60] cursor-pointer flex items-center justify-center active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
+          class="relative z-[100] p-3 cursor-pointer flex items-center justify-center active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 pointer-events-auto focus:outline-none"
         >
           <svg class="w-5 h-5 stroke-[1.8] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
@@ -1960,13 +1960,20 @@
        ========================================== -->
 
   <!-- Modal de Búsqueda con Sugerencias en Vivo -->
-  <div id="search-modal" class="fixed inset-0 z-[70] bg-slate-900/60 backdrop-blur-sm hidden items-start justify-center pt-16 sm:pt-24 px-4 transition-opacity" role="dialog" aria-modal="true" aria-label="Buscador de productos">
-    <div class="bg-white rounded-3xl p-5 sm:p-6 w-full max-w-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[85vh]">
+  <div 
+    id="search-modal" 
+    onclick="if(event.target===this) closeSearchModal();" 
+    class="fixed inset-0 z-[99999] bg-slate-900/70 backdrop-blur-sm hidden items-start justify-center pt-16 sm:pt-24 px-4 transition-opacity cursor-pointer" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-label="Buscador de productos"
+  >
+    <div class="bg-white rounded-3xl p-5 sm:p-6 w-full max-w-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[85vh] cursor-default">
       
       <!-- Input de búsqueda -->
       <div class="flex items-center justify-between border-b border-slate-200 pb-4">
         <div class="flex items-center gap-3 w-full">
-          <svg class="w-5 h-5 text-red-600 stroke-[2] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 text-red-600 stroke-[2] flex-shrink-0 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
           </svg>
           <input 
@@ -1977,8 +1984,14 @@
             class="w-full text-base sm:text-lg font-poppins focus:outline-none text-slate-800 placeholder-slate-400 bg-transparent"
           >
         </div>
-        <button id="close-search" aria-label="Cerrar buscador" class="p-2 text-slate-400 hover:text-red-600 focus:outline-none transition-colors">
-          <svg class="w-5 h-5 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button 
+          type="button" 
+          id="close-search" 
+          onclick="closeSearchModal(); const sm=document.getElementById('search-modal'); if(sm){sm.classList.add('hidden');sm.classList.remove('flex');document.body.classList.remove('overflow-hidden');}" 
+          aria-label="Cerrar buscador" 
+          class="p-2 text-slate-400 hover:text-red-600 focus:outline-none transition-colors cursor-pointer"
+        >
+          <svg class="w-6 h-6 stroke-[2] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
@@ -2911,29 +2924,35 @@
     const searchPopularTags = document.getElementById('search-popular-tags');
 
     function openSearchModal() {
-      if (!searchModal) return;
-      searchModal.classList.remove('hidden');
-      searchModal.classList.add('flex');
-      if (searchInput) {
-        searchInput.value = '';
-        searchInput.focus();
+      const modal = document.getElementById('search-modal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+      const input = document.getElementById('search-input');
+      if (input) {
+        input.value = '';
+        setTimeout(() => input.focus(), 80);
       }
-      if (searchResultsDropdown) {
-        searchResultsDropdown.innerHTML = '';
-        searchResultsDropdown.classList.add('hidden');
+      const dropdown = document.getElementById('search-results-dropdown');
+      if (dropdown) {
+        dropdown.innerHTML = '';
+        dropdown.classList.add('hidden');
       }
-      if (searchPopularTags) {
-        searchPopularTags.classList.remove('hidden');
+      const tags = document.getElementById('search-popular-tags');
+      if (tags) {
+        tags.classList.remove('hidden');
       }
     }
 
     function closeSearchModal() {
-      if (!searchModal) return;
-      searchModal.classList.add('hidden');
-      searchModal.classList.remove('flex');
+      const modal = document.getElementById('search-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
     }
 
-    if (searchBtn) searchBtn.addEventListener('click', openSearchModal);
     if (closeSearch) closeSearch.addEventListener('click', closeSearchModal);
 
     if (searchModal) {
