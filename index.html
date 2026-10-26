@@ -229,36 +229,60 @@
         </a>
       </nav>
 
-      <!-- Iconos SVG a la derecha: Lupa, Corazón, Carrito (hover en Rojo) -->
-      <div class="flex items-center space-x-1.5 sm:space-x-3 flex-shrink-0">
+      <!-- Iconos SVG a la derecha: Lupa, Corazón, Carrito (Hitbox aumentado, relative z-50 y pointer-events-none) -->
+      <div class="relative z-50 flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
         <!-- Buscador -->
-        <button id="search-btn" aria-label="Abrir buscador" class="p-2.5 rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 transition-colors focus:outline-none focus:ring-2 focus:ring-red-600/30">
-          <svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button 
+          type="button" 
+          id="search-btn" 
+          onclick="openSearchModal(); document.getElementById('search-modal').classList.remove('hidden'); document.getElementById('search-modal').classList.add('flex');" 
+          aria-label="Abrir buscador" 
+          class="p-3 relative z-50 flex items-center justify-center cursor-pointer active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
+        >
+          <svg class="w-5 h-5 stroke-[1.8] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
           </svg>
         </button>
 
         <!-- Favoritos -->
-        <button id="wishlist-btn" aria-label="Ver favoritos" class="relative p-2.5 rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 transition-colors focus:outline-none focus:ring-2 focus:ring-red-600/30">
-          <svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button 
+          type="button" 
+          id="wishlist-btn" 
+          onclick="openWishlist()" 
+          aria-label="Ver favoritos" 
+          class="p-3 relative z-50 flex items-center justify-center cursor-pointer active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
+        >
+          <svg class="w-5 h-5 stroke-[1.8] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
           </svg>
-          <span id="wishlist-badge" class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-600 hidden"></span>
+          <span id="wishlist-badge" class="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-600 pointer-events-none hidden"></span>
         </button>
 
         <!-- Carrito de compras (Navbar) -->
-        <button id="nav-cart-btn" onclick="openCart()" aria-label="Ver carrito" class="relative p-2.5 rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 transition-colors focus:outline-none focus:ring-2 focus:ring-red-600/30">
-          <svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button 
+          type="button" 
+          id="nav-cart-btn" 
+          onclick="openCart(); document.getElementById('cart-drawer').classList.remove('translate-x-full'); document.getElementById('cart-drawer').classList.add('translate-x-0'); document.getElementById('cart-drawer-backdrop').classList.remove('hidden'); document.body.classList.add('overflow-hidden');" 
+          aria-label="Ver carrito" 
+          class="p-3 relative z-50 flex items-center justify-center cursor-pointer active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
+        >
+          <svg class="w-5 h-5 stroke-[1.8] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119.993z"/>
           </svg>
-          <span id="nav-cart-count" class="cart-badge-count absolute -top-0.5 -right-0.5 bg-red-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center font-inter shadow-sm hidden">
+          <span id="nav-cart-count" class="cart-badge-count absolute top-1 right-1 bg-red-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center font-inter shadow-sm pointer-events-none hidden">
             0
           </span>
         </button>
 
         <!-- Menú Móvil -->
-        <button id="mobile-menu-toggle" aria-label="Abrir menú móvil" class="md:hidden p-2.5 rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none">
-          <svg class="w-6 h-6 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button 
+          type="button" 
+          id="mobile-menu-toggle" 
+          onclick="document.getElementById('mobile-menu').classList.toggle('hidden');" 
+          aria-label="Abrir menú móvil" 
+          class="md:hidden p-3 relative z-50 flex items-center justify-center cursor-pointer active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
+        >
+          <svg class="w-6 h-6 stroke-[1.8] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
           </svg>
         </button>
@@ -3608,6 +3632,17 @@
           wishlistBadge.classList.add('hidden');
         }
       }
+    }
+
+    function openWishlist() {
+      const productosSection = document.getElementById('productos');
+      if (productosSection) {
+        productosSection.scrollIntoView({ behavior: 'smooth' });
+      }
+      showToast(wishlistCount > 0 
+        ? `Tienes ${wishlistCount} ${wishlistCount === 1 ? 'mueble guardado en favoritos' : 'muebles guardados en favoritos'}` 
+        : 'Guarda tus muebles preferidos haciendo clic en el icono de corazon en cada producto'
+      );
     }
   </script>
 </body>
