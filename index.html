@@ -251,8 +251,8 @@
           <svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119.993z"/>
           </svg>
-          <span id="nav-cart-count" class="cart-badge-count absolute -top-0.5 -right-0.5 bg-red-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center font-inter shadow-sm">
-            2
+          <span id="nav-cart-count" class="cart-badge-count absolute -top-0.5 -right-0.5 bg-red-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center font-inter shadow-sm hidden">
+            0
           </span>
         </button>
 
@@ -1866,8 +1866,8 @@
       </svg>
 
       <!-- Badge Contador Rojo/Blanco con número de productos -->
-      <span id="cart-count" class="cart-badge-count absolute -top-1 -right-1 bg-white text-red-600 border-2 border-red-600 text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center font-inter shadow-md">
-        2
+      <span id="cart-count" class="cart-badge-count absolute -top-1 -right-1 bg-white text-red-600 border-2 border-red-600 text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center font-inter shadow-md hidden">
+        0
       </span>
 
       <!-- Tooltip al pasar el mouse -->
@@ -3084,28 +3084,12 @@
       }
     });
 
-    // Array reactivo del carrito
-    let cart = [
-      {
-        id: 'cama-sueno-matrimonial',
-        title: 'Cama Sueño Matrimonial',
-        price: 'Q2,199',
-        numericPrice: 2199.00,
-        image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=200&q=80',
-        quantity: 1
-      },
-      {
-        id: 'ropero-fiesta-3p',
-        title: 'Ropero Fiesta 3 Puertas',
-        price: 'Q1,899',
-        numericPrice: 1899.00,
-        image: 'https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=200&q=80',
-        quantity: 1
-      }
-    ];
+    // Array reactivo del carrito (inicia completamente vacío)
+    let cart = [];
+    let carrito = cart; // Alias de compatibilidad
 
     function renderCart() {
-      const cartItemsContainer = document.getElementById('cart-items');
+      const cartItemsContainer = document.getElementById('cart-items') || document.getElementById('contenedor-carrito');
       const cartTotalEl = document.getElementById('cart-total-amount');
       const checkoutWhatsappBtn = document.getElementById('cart-whatsapp-checkout');
 
