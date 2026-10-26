@@ -80,14 +80,16 @@
     #cart-toast {
       transform: translateY(-24px) scale(0.95);
       opacity: 0;
-      pointer-events: none;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+      pointer-events: none !important;
+      visibility: hidden;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, visibility 0.35s;
     }
 
     #cart-toast.is-active {
       transform: translateY(0) scale(1);
       opacity: 1;
-      pointer-events: auto;
+      pointer-events: auto !important;
+      visibility: visible;
     }
 
     /* Secuencia 1: Carrito avanza y desaparece */
@@ -235,7 +237,7 @@
         <button 
           type="button" 
           id="search-btn" 
-          onclick="openSearchModal(); const sm=document.getElementById('search-modal'); if(sm){sm.classList.remove('hidden');sm.classList.add('flex');document.body.classList.add('overflow-hidden');const si=document.getElementById('search-input');if(si){si.value='';setTimeout(()=>si.focus(),100);}}" 
+          onclick="event.stopPropagation(); openSearchModal();" 
           aria-label="Abrir buscador" 
           class="relative z-[100] p-3 cursor-pointer flex items-center justify-center active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 pointer-events-auto focus:outline-none"
         >
@@ -248,9 +250,9 @@
         <button 
           type="button" 
           id="wishlist-btn" 
-          onclick="openWishlist()" 
+          onclick="event.stopPropagation(); openWishlist();" 
           aria-label="Ver favoritos" 
-          class="p-3 relative z-[60] cursor-pointer flex items-center justify-center active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
+          class="p-3 relative z-[100] cursor-pointer flex items-center justify-center active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 pointer-events-auto focus:outline-none"
         >
           <svg class="w-5 h-5 stroke-[1.8] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
@@ -262,14 +264,14 @@
         <button 
           type="button" 
           id="nav-cart-btn" 
-          onclick="document.getElementById('cart-drawer').classList.remove('translate-x-full'); document.getElementById('cart-drawer').classList.add('translate-x-0'); document.getElementById('cart-drawer-backdrop').classList.remove('hidden'); document.body.classList.add('overflow-hidden');" 
+          onclick="event.stopPropagation(); openCart();" 
           aria-label="Ver carrito" 
-          class="relative z-50 p-2 cursor-pointer hover:bg-gray-100 rounded-full transition-colors"
+          class="relative z-[100] p-3 cursor-pointer flex items-center justify-center hover:bg-gray-100 active:scale-95 rounded-full transition-all pointer-events-auto focus:outline-none"
         >
           <svg class="w-5 h-5 stroke-[1.8] pointer-events-none text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119.993z"/>
           </svg>
-          <span id="nav-cart-count" class="cart-badge-count absolute -top-0.5 -right-0.5 bg-red-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center font-inter shadow-sm pointer-events-none hidden">
+          <span id="nav-cart-count" class="cart-badge-count absolute top-1 right-1 bg-red-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center font-inter shadow-sm pointer-events-none hidden">
             0
           </span>
         </button>
@@ -278,9 +280,9 @@
         <button 
           type="button" 
           id="mobile-menu-toggle" 
-          onclick="document.getElementById('mobile-menu').classList.toggle('hidden');" 
+          onclick="event.stopPropagation(); document.getElementById('mobile-menu').classList.toggle('hidden');" 
           aria-label="Abrir menú móvil" 
-          class="md:hidden p-3 relative z-[60] cursor-pointer flex items-center justify-center active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
+          class="md:hidden p-3 relative z-[100] cursor-pointer flex items-center justify-center active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 pointer-events-auto focus:outline-none"
         >
           <svg class="w-6 h-6 stroke-[1.8] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
@@ -1962,8 +1964,7 @@
   <!-- Modal de Búsqueda con Sugerencias en Vivo -->
   <div 
     id="search-modal" 
-    onclick="if(event.target===this) closeSearchModal();" 
-    class="fixed inset-0 z-[99999] bg-slate-900/70 backdrop-blur-sm hidden items-start justify-center pt-16 sm:pt-24 px-4 transition-opacity cursor-pointer" 
+    class="fixed inset-0 z-[99999] bg-slate-900/70 backdrop-blur-sm hidden items-start justify-center pt-16 sm:pt-24 px-4 transition-opacity" 
     role="dialog" 
     aria-modal="true" 
     aria-label="Buscador de productos"
@@ -1987,7 +1988,7 @@
         <button 
           type="button" 
           id="close-search" 
-          onclick="closeSearchModal(); const sm=document.getElementById('search-modal'); if(sm){sm.classList.add('hidden');sm.classList.remove('flex');document.body.classList.remove('overflow-hidden');}" 
+          onclick="event.stopPropagation(); closeSearchModal();" 
           aria-label="Cerrar buscador" 
           class="p-2 text-slate-400 hover:text-red-600 focus:outline-none transition-colors cursor-pointer"
         >
@@ -2017,8 +2018,8 @@
   </div>
 
   <!-- Drawer Lateral del Carrito -->
-  <div id="cart-drawer-backdrop" onclick="closeCartDrawer()" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden transition-opacity cursor-pointer"></div>
-  <div id="cart-drawer" class="fixed top-0 right-0 z-[60] h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
+  <div id="cart-drawer-backdrop" onclick="closeCartDrawer()" class="fixed inset-0 z-[1000] bg-slate-900/50 backdrop-blur-sm hidden transition-opacity cursor-pointer"></div>
+  <div id="cart-drawer" class="fixed top-0 right-0 z-[1001] h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
     <div class="p-6 border-b border-slate-200 flex items-center justify-between relative">
       <div class="flex items-center gap-2">
         <svg class="w-5 h-5 text-red-600 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2030,7 +2031,7 @@
       <button 
         type="button" 
         id="btn-cerrar-carrito" 
-        onclick="document.getElementById('cart-drawer').classList.add('translate-x-full'); document.getElementById('cart-drawer').classList.remove('translate-x-0'); document.getElementById('cart-drawer-backdrop').classList.add('hidden'); document.body.classList.remove('overflow-hidden');" 
+        onclick="event.stopPropagation(); closeCartDrawer();" 
         aria-label="Cerrar carrito" 
         class="absolute top-0 right-0 w-16 h-16 flex items-center justify-center cursor-pointer z-[99999] outline-none group bg-transparent"
       >
@@ -2233,8 +2234,8 @@
   <!-- ==========================================
        TOAST DE ÉXITO: MICRO-INTERACCIÓN AL AGREGAR AL CARRITO (id="cart-toast")
        ========================================== -->
-  <aside id="cart-toast" class="fixed top-5 right-5 sm:top-6 sm:right-6 z-[9999] max-w-sm w-[calc(100%-2.5rem)] sm:w-96 pointer-events-none" aria-live="polite" aria-atomic="true">
-    <div class="bg-white rounded-2xl p-4 shadow-2xl border border-slate-100 flex items-center gap-3.5 ring-1 ring-slate-900/5 pointer-events-auto">
+  <aside id="cart-toast" class="fixed top-5 right-5 sm:top-6 sm:right-6 z-[9999] max-w-sm w-[calc(100%-2.5rem)] sm:w-96 pointer-events-none hidden" aria-live="polite" aria-atomic="true">
+    <div class="bg-white rounded-2xl p-4 shadow-2xl border border-slate-100 flex items-center gap-3.5 ring-1 ring-slate-900/5">
       
       <!-- Contenedor del Icono SVG Animado (Carrito a Checkmark) -->
       <div class="relative w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0 overflow-hidden ring-1 ring-emerald-500/20">
@@ -2923,7 +2924,10 @@
     const searchResultsDropdown = document.getElementById('search-results-dropdown');
     const searchPopularTags = document.getElementById('search-popular-tags');
 
+    let searchModalOpenedAt = 0;
+
     function openSearchModal() {
+      searchModalOpenedAt = Date.now();
       const modal = document.getElementById('search-modal');
       if (!modal) return;
       modal.classList.remove('hidden');
@@ -2932,7 +2936,7 @@
       const input = document.getElementById('search-input');
       if (input) {
         input.value = '';
-        setTimeout(() => input.focus(), 80);
+        setTimeout(() => input.focus(), 100);
       }
       const dropdown = document.getElementById('search-results-dropdown');
       if (dropdown) {
@@ -2946,6 +2950,8 @@
     }
 
     function closeSearchModal() {
+      // Evitar que el toque sintetizado en movil que abrio el boton cierre el modal inmediatamente
+      if (Date.now() - searchModalOpenedAt < 350) return;
       const modal = document.getElementById('search-modal');
       if (!modal) return;
       modal.classList.add('hidden');
@@ -2953,7 +2959,20 @@
       document.body.classList.remove('overflow-hidden');
     }
 
-    if (closeSearch) closeSearch.addEventListener('click', closeSearchModal);
+    if (searchBtn) {
+      searchBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openSearchModal();
+      });
+    }
+
+    if (closeSearch) {
+      closeSearch.addEventListener('click', (e) => {
+        e.stopPropagation();
+        searchModalOpenedAt = 0; // Permitir cierre explicito inmediato
+        closeSearchModal();
+      });
+    }
 
     if (searchModal) {
       searchModal.addEventListener('click', (e) => {
@@ -3453,34 +3472,48 @@
     const navCartBtn = document.getElementById('nav-cart-btn');
 
     function openCart() {
-      if (cartDrawer) {
-        cartDrawer.classList.remove('translate-x-full');
-        cartDrawer.classList.add('translate-x-0');
+      const drawer = document.getElementById('cart-drawer');
+      const backdrop = document.getElementById('cart-drawer-backdrop');
+      if (drawer) {
+        drawer.classList.remove('translate-x-full');
+        drawer.classList.add('translate-x-0');
+        drawer.style.transform = 'translateX(0)';
       }
-      if (cartBackdrop) {
-        cartBackdrop.classList.remove('hidden');
+      if (backdrop) {
+        backdrop.classList.remove('hidden');
+        backdrop.style.display = 'block';
       }
       document.body.classList.add('overflow-hidden');
     }
 
     function closeCartDrawer() {
-      if (cartDrawer) {
-        cartDrawer.classList.remove('translate-x-0');
-        cartDrawer.classList.add('translate-x-full');
+      const drawer = document.getElementById('cart-drawer');
+      const backdrop = document.getElementById('cart-drawer-backdrop');
+      if (drawer) {
+        drawer.classList.remove('translate-x-0');
+        drawer.classList.add('translate-x-full');
+        drawer.style.transform = '';
       }
-      if (cartBackdrop) {
-        cartBackdrop.classList.add('hidden');
+      if (backdrop) {
+        backdrop.classList.add('hidden');
+        backdrop.style.display = 'none';
       }
       document.body.classList.remove('overflow-hidden');
     }
 
+    if (cartBtn) {
+      cartBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openCart();
+      });
+    }
 
-
-
-
-
-    if (cartBtn) cartBtn.addEventListener('click', openCart);
-    if (navCartBtn) navCartBtn.addEventListener('click', openCart);
+    if (navCartBtn) {
+      navCartBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openCart();
+      });
+    }
     if (cartBackdrop) {
       cartBackdrop.addEventListener('click', (e) => {
         e.preventDefault();
@@ -3664,7 +3697,7 @@
       if (toastTitle) toastTitle.textContent = title || 'Mueble agregado';
       if (toastPrice) toastPrice.textContent = price || '';
 
-      // Reiniciar animación del SVG eliminando y reasignando la clase activa
+      cartToast.classList.remove('hidden');
       cartToast.classList.remove('is-active');
       void cartToast.offsetWidth; // Forzar reflow
       cartToast.classList.add('is-active');
@@ -3682,6 +3715,11 @@
       const cartToast = document.getElementById('cart-toast');
       if (cartToast) {
         cartToast.classList.remove('is-active');
+        setTimeout(() => {
+          if (!cartToast.classList.contains('is-active')) {
+            cartToast.classList.add('hidden');
+          }
+        }, 360);
       }
       clearTimeout(cartToastTimer);
     }
