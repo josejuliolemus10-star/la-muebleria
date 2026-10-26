@@ -1994,31 +1994,51 @@
   <div id="product-detail-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4 sm:p-6 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-product-title">
     <div class="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200">
       
-      <!-- Botón de Cerrar Modal -->
-      <button onclick="closeProductModal()" aria-label="Cerrar modal" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-600 flex items-center justify-center transition-colors shadow-sm focus:outline-none">
-        <svg class="w-5 h-5 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Botón de Cerrar Modal (Hitbox aumentado para móviles) -->
+      <button 
+        id="btn-cerrar-modal" 
+        onclick="closeProductModal()" 
+        aria-label="Cerrar modal" 
+        class="p-3 w-12 h-12 absolute top-2 right-2 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm shadow-md cursor-pointer z-50 text-slate-700 hover:text-red-600 hover:bg-white active:scale-95 transition-all focus:outline-none"
+      >
+        <svg class="w-6 h-6 stroke-[2] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
 
       <div class="grid grid-cols-1 md:grid-cols-2">
-        <!-- Columna Izquierda: Foto Grande del Mueble -->
-        <div class="relative bg-slate-100 p-6 flex items-center justify-center min-h-[300px] md:min-h-[460px] overflow-hidden">
-          <span id="modal-product-badge" class="absolute top-4 left-4 z-10 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full font-inter shadow-md uppercase">
-            Combos Especiales
-          </span>
-          <img 
-            id="modal-product-img" 
-            src="" 
-            alt="Detalle del producto" 
-            class="w-full h-full object-cover max-h-[420px] rounded-2xl shadow-sm hover:scale-105 transition-transform duration-500"
-          >
-          <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-xl p-2.5 text-center text-xs font-inter text-slate-700 shadow-sm border border-slate-100 inline-flex items-center justify-center gap-1.5">
+        <!-- Columna Izquierda: Galería de Fotos del Mueble -->
+        <div class="bg-slate-100 p-5 sm:p-6 flex flex-col justify-between">
+          
+          <!-- Contenedor Imagen Principal -->
+          <div class="relative w-full aspect-[4/3] sm:aspect-square max-h-[340px] rounded-2xl overflow-hidden bg-white shadow-sm flex items-center justify-center">
+            <span id="modal-product-badge" class="absolute top-3 left-3 z-10 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full font-inter shadow-md uppercase">
+              Combos Especiales
+            </span>
+            <img 
+              id="modal-product-img" 
+              src="" 
+              alt="Detalle del producto" 
+              class="w-full h-full object-cover transition-opacity duration-300 ease-in-out"
+            >
+          </div>
+
+          <!-- Carrusel de Miniaturas (Thumbnails) -->
+          <div class="mt-4">
+            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider font-inter mb-2">Vistas del mueble:</p>
+            <div id="modal-thumbnails-container" class="flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
+              <!-- Renderizado dinámicamente con JavaScript -->
+            </div>
+          </div>
+
+          <!-- Banner de Calidad -->
+          <div class="mt-3 bg-white/90 backdrop-blur-md rounded-xl p-2.5 text-center text-xs font-inter text-slate-700 shadow-sm border border-slate-200/60 inline-flex items-center justify-center gap-1.5">
             <svg class="w-3.5 h-3.5 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
             </svg>
             <span>Fotografía real de alta fidelidad y manufactura premium</span>
           </div>
+
         </div>
 
         <!-- Columna Derecha: Título, Precios, Medidas, Beneficios y WhatsApp -->
@@ -2218,7 +2238,12 @@
       "alto": "1.15m"
     },
     "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
-    "description": "Estructura sólida de pino curado anti-polilla, espaldar acolchado en tono neutro y base ortopédica para descanso reparador."
+    "description": "Estructura sólida de pino curado anti-polilla, espaldar acolchado en tono neutro y base ortopédica para descanso reparador.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   "cama-king-imperial": {
     "id": "cama-king-imperial",
@@ -2237,7 +2262,12 @@
       "alto": "1.25m"
     },
     "image": "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80",
-    "description": "Elegancia en tamaño King con cabecera capitonada en lino gris perla y soportes de madera de cedro reforzada."
+    "description": "Elegancia en tamaño King con cabecera capitonada en lino gris perla y soportes de madera de cedro reforzada.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   "cama-queen-nordica": {
     "id": "cama-queen-nordica",
@@ -2256,7 +2286,12 @@
       "alto": "1.05m"
     },
     "image": "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80",
-    "description": "Diseño minimalista escandinavo con marco de roble claro, esquinas curvadas y listones ultra resistentes de alta densidad."
+    "description": "Diseño minimalista escandinavo con marco de roble claro, esquinas curvadas y listones ultra resistentes de alta densidad.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   "ropero-fiesta-3p": {
     "id": "ropero-fiesta-3p",
@@ -2275,7 +2310,12 @@
       "alto": "1.90m"
     },
     "image": "https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=800&q=80",
-    "description": "Armario con espejo central biselado, tubo para colgar en aluminio, repisas interiores y 2 gavetas con cerradura."
+    "description": "Armario con espejo central biselado, tubo para colgar en aluminio, repisas interiores y 2 gavetas con cerradura.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   "ropero-monaco-6p": {
     "id": "ropero-monaco-6p",
@@ -2294,7 +2334,12 @@
       "alto": "2.10m"
     },
     "image": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80",
-    "description": "Capacidad monumental para dos personas, zapatera integrada, 4 cajoneras y compartimentos superiores para maletas."
+    "description": "Capacidad monumental para dos personas, zapatera integrada, 4 cajoneras y compartimentos superiores para maletas.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   "ropero-corredizo-loft": {
     "id": "ropero-corredizo-loft",
@@ -2313,7 +2358,12 @@
       "alto": "2.05m"
     },
     "image": "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80",
-    "description": "Puertas corredizas con rieles de aluminio silenciosos, ideal para maximizar el espacio libre en recámaras modernas."
+    "description": "Puertas corredizas con rieles de aluminio silenciosos, ideal para maximizar el espacio libre en recámaras modernas.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   "cocina-aurea-lisa": {
     "id": "cocina-aurea-lisa",
@@ -2332,7 +2382,12 @@
       "alto": "0.90m"
     },
     "image": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80",
-    "description": "Gabinete modular con cubierta melamínica impermeable, rieles telescópicos alemanes y herrajes inoxidables."
+    "description": "Gabinete modular con cubierta melamínica impermeable, rieles telescópicos alemanes y herrajes inoxidables.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   "cocina-marmol-granito": {
     "id": "cocina-marmol-granito",
@@ -2351,7 +2406,12 @@
       "alto": "0.90m"
     },
     "image": "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80",
-    "description": "Superficie de cuarzo de alta resistencia térmica, alacenas superiores con pistones de gas y tiradores ocultos."
+    "description": "Superficie de cuarzo de alta resistencia térmica, alacenas superiores con pistones de gas y tiradores ocultos.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   "juego-sala-321": {
     "id": "juego-sala-321",
@@ -2370,7 +2430,12 @@
       "alto": "0.85m"
     },
     "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80",
-    "description": "Modular completo para 6 personas, tapicería resistente en microfibra suave y resortes zig-zag reforzados."
+    "description": "Modular completo para 6 personas, tapicería resistente en microfibra suave y resortes zig-zag reforzados.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   "sofa-seccional-l-londres": {
     "id": "sofa-seccional-l-londres",
@@ -2389,7 +2454,12 @@
       "alto": "0.88m"
     },
     "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80",
-    "description": "Elegante chaise longue intercambiable, tela antifluidos tono gris oxford y patas cromadas de alta resistencia."
+    "description": "Elegante chaise longue intercambiable, tela antifluidos tono gris oxford y patas cromadas de alta resistencia.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   "combo-matrimonial": {
     "id": "combo-matrimonial",
@@ -2408,7 +2478,12 @@
       "alto": "1.95m"
     },
     "image": "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80",
-    "description": "Set integral para dormitorio: Cama con cabecera acolchada y ropero de 3 cuerpos de madera sólida tratada."
+    "description": "Set integral para dormitorio: Cama con cabecera acolchada y ropero de 3 cuerpos de madera sólida tratada.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   "combo-sala-comedor-armonia": {
     "id": "combo-sala-comedor-armonia",
@@ -2427,7 +2502,12 @@
       "alto": "0.85m"
     },
     "image": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
-    "description": "Equipa tu área social completa: Sofá de 3 plazas + Mesa de comedor para 4 comensales en perfecta combinación."
+    "description": "Equipa tu área social completa: Sofá de 3 plazas + Mesa de comedor para 4 comensales en perfecta combinación.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   "comedor-florencia": {
     "id": "comedor-florencia",
@@ -2446,7 +2526,12 @@
       "alto": "0.78m"
     },
     "image": "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80",
-    "description": "Mesa espaciosa en madera maciza con sellador poliuretano de alta resistencia y 6 sillas tapizadas acolchadas."
+    "description": "Mesa espaciosa en madera maciza con sellador poliuretano de alta resistencia y 6 sillas tapizadas acolchadas.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   "comedor-milan-8-puestos": {
     "id": "comedor-milan-8-puestos",
@@ -2465,7 +2550,12 @@
       "alto": "0.78m"
     },
     "image": "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=800&q=80",
-    "description": "Sistema de apertura central extensible, cubierta de madera de fresno natural y sillas con respaldo alto ergonómico."
+    "description": "Sistema de apertura central extensible, cubierta de madera de fresno natural y sillas con respaldo alto ergonómico.",
+    "imagenes": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?auto=format&fit=crop&w=800&q=80"
+    ]
   }
 };
 
@@ -2572,9 +2662,10 @@
     }
 
     // ==========================================
-    // 4. MODAL DE DETALLES DEL PRODUCTO (WhatsApp)
+    // 4. MODAL DE DETALLES DEL PRODUCTO & GALERÍA
     // ==========================================
     const productModal = document.getElementById('product-detail-modal');
+    const btnCerrarModal = document.getElementById('btn-cerrar-modal');
 
     function openProductModal(productId) {
       const product = PRODUCTS_DATA[productId];
@@ -2591,8 +2682,14 @@
       const modalAncho = document.getElementById('modal-medida-ancho');
       const modalAlto = document.getElementById('modal-medida-alto');
       const modalWhatsappCta = document.getElementById('modal-whatsapp-cta');
+      const thumbnailsContainer = document.getElementById('modal-thumbnails-container');
 
-      modalImg.src = product.image;
+      // Obtener lista de imágenes (array 'imagenes' o fallback a 'image')
+      const productImages = (product.imagenes && product.imagenes.length > 0) 
+        ? product.imagenes 
+        : [product.image];
+
+      modalImg.src = productImages[0];
       modalImg.alt = product.title;
       modalCategoryTag.textContent = product.categoryLabel;
       modalTitle.textContent = product.title;
@@ -2606,10 +2703,55 @@
 
       const isAgotado = product.stock === false || product.agotado === true;
 
+      // Renderizar miniaturas interactivas (thumbnails)
+      if (thumbnailsContainer) {
+        thumbnailsContainer.innerHTML = '';
+
+        productImages.forEach((imgUrl, idx) => {
+          const thumbBtn = document.createElement('button');
+          thumbBtn.type = 'button';
+          thumbBtn.setAttribute('aria-label', `Ver imagen ${idx + 1} de ${product.title}`);
+          thumbBtn.className = `thumbnail-btn flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 transition-all cursor-pointer focus:outline-none ${
+            idx === 0 
+              ? 'border-red-600 ring-2 ring-red-100 shadow-sm scale-100' 
+              : 'border-slate-200 opacity-70 hover:opacity-100 hover:border-slate-300'
+          }`;
+
+          thumbBtn.innerHTML = `
+            <img src="${imgUrl}" alt="${product.title} miniatura ${idx + 1}" class="w-full h-full object-cover pointer-events-none ${isAgotado ? 'grayscale opacity-70' : ''}">
+          `;
+
+          // Event listener para cambio fluido de imagen principal
+          thumbBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Desmarcar todos los thumbnails
+            thumbnailsContainer.querySelectorAll('.thumbnail-btn').forEach(btn => {
+              btn.className = 'thumbnail-btn flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 border-slate-200 opacity-70 hover:opacity-100 hover:border-slate-300 transition-all cursor-pointer focus:outline-none';
+            });
+
+            // Marcar thumbnail activo
+            thumbBtn.className = 'thumbnail-btn flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 border-red-600 ring-2 ring-red-100 shadow-sm transition-all cursor-pointer focus:outline-none scale-100';
+
+            // Transición fluida de la imagen principal
+            if (modalImg.src !== imgUrl) {
+              modalImg.classList.add('opacity-40');
+              setTimeout(() => {
+                modalImg.src = imgUrl;
+                modalImg.classList.remove('opacity-40');
+              }, 150);
+            }
+          });
+
+          thumbnailsContainer.appendChild(thumbBtn);
+        });
+      }
+
       if (isAgotado) {
         modalBadge.textContent = 'AGOTADO';
-        modalBadge.className = 'absolute top-4 left-4 z-10 bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-full font-inter shadow-md uppercase';
-        modalImg.className = 'w-full h-full object-cover max-h-[420px] rounded-2xl shadow-sm opacity-60 grayscale';
+        modalBadge.className = 'absolute top-3 left-3 z-10 bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-full font-inter shadow-md uppercase';
+        modalImg.className = 'w-full h-full object-cover transition-opacity duration-300 ease-in-out opacity-60 grayscale';
 
         if (modalWhatsappCta) {
           modalWhatsappCta.href = 'javascript:void(0)';
@@ -2624,8 +2766,8 @@
         }
       } else {
         modalBadge.textContent = product.categoryLabel;
-        modalBadge.className = 'absolute top-4 left-4 z-10 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full font-inter shadow-md uppercase';
-        modalImg.className = 'w-full h-full object-cover max-h-[420px] rounded-2xl shadow-sm hover:scale-105 transition-transform duration-500';
+        modalBadge.className = 'absolute top-3 left-3 z-10 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full font-inter shadow-md uppercase';
+        modalImg.className = 'w-full h-full object-cover transition-opacity duration-300 ease-in-out hover:scale-105';
 
         if (modalWhatsappCta) {
           const whatsappMsg = `Hola Dimexa, me interesa el ${product.title} de ${product.price} que vi en la web. ¿Tienen disponible?`;
@@ -2651,6 +2793,15 @@
       productModal.classList.add('hidden');
       productModal.classList.remove('flex');
       document.body.classList.remove('overflow-hidden');
+    }
+
+    // Vinculación estricta al botón de cierre por ID
+    if (btnCerrarModal) {
+      btnCerrarModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeProductModal();
+      });
     }
 
     if (productModal) {
