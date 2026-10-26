@@ -311,14 +311,32 @@
         </div>
       </div>
 
-      <!-- Grid de 6 Tarjetas Circulares con Swiper (Hover con borde ROJO) -->
+      <!-- Grid de 7 Tarjetas Circulares con Swiper (Filtros interactivos por ambiente) -->
       <div class="swiper categories-swiper overflow-visible">
-        <div class="swiper-wrapper">
+        <div class="swiper-wrapper py-2">
           
-          <!-- 1. Camas -->
+          <!-- 1. Todas (Mostrar Todo el Catálogo) -->
           <div class="swiper-slide">
-            <a href="#productos" class="group flex flex-col items-center text-center">
-              <div class="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full bg-red-50/70 border-2 border-transparent group-hover:border-red-600 transition-all duration-300 flex items-center justify-center p-3.5 shadow-sm group-hover:shadow-md relative overflow-hidden">
+            <button type="button" onclick="filterCategory('todas')" data-category-btn="todas" class="category-btn group flex flex-col items-center text-center w-full focus:outline-none cursor-pointer transition-transform duration-300 hover:-translate-y-1">
+              <div class="cat-circle w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full bg-red-50/80 border-2 border-red-600 ring-4 ring-red-100 transition-all duration-300 flex items-center justify-center p-3 shadow-md relative overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=500&q=80" 
+                  alt="Todas las categorías" 
+                  loading="lazy" 
+                  class="w-full h-full object-cover rounded-full drop-shadow-sm group-hover:scale-110 transition-transform duration-500"
+                >
+                <span class="absolute inset-0 bg-red-600/10 group-hover:bg-transparent transition-colors"></span>
+              </div>
+              <span class="cat-label mt-3 sm:mt-4 font-poppins font-bold text-sm sm:text-base text-red-600 transition-colors">
+                Todas
+              </span>
+            </button>
+          </div>
+
+          <!-- 2. Camas -->
+          <div class="swiper-slide">
+            <button type="button" onclick="filterCategory('camas')" data-category-btn="camas" class="category-btn group flex flex-col items-center text-center w-full focus:outline-none cursor-pointer transition-transform duration-300 hover:-translate-y-1">
+              <div class="cat-circle w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full bg-red-50/70 border-2 border-transparent group-hover:border-red-600 transition-all duration-300 flex items-center justify-center p-3 shadow-sm group-hover:shadow-md relative overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=500&q=80" 
                   alt="Categoría Camas" 
@@ -326,33 +344,33 @@
                   class="w-full h-full object-cover rounded-full drop-shadow-sm group-hover:scale-110 transition-transform duration-500"
                 >
               </div>
-              <span class="mt-4 font-poppins font-medium text-base text-slate-800 group-hover:text-red-600 transition-colors">
+              <span class="cat-label mt-3 sm:mt-4 font-poppins font-medium text-sm sm:text-base text-slate-800 group-hover:text-red-600 transition-colors">
                 Camas
               </span>
-            </a>
+            </button>
           </div>
 
-          <!-- 2. Roperos -->
+          <!-- 3. Roperos -->
           <div class="swiper-slide">
-            <a href="#productos" class="group flex flex-col items-center text-center">
-              <div class="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full bg-red-50/70 border-2 border-transparent group-hover:border-red-600 transition-all duration-300 flex items-center justify-center p-3.5 shadow-sm group-hover:shadow-md relative overflow-hidden">
+            <button type="button" onclick="filterCategory('roperos')" data-category-btn="roperos" class="category-btn group flex flex-col items-center text-center w-full focus:outline-none cursor-pointer transition-transform duration-300 hover:-translate-y-1">
+              <div class="cat-circle w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full bg-red-50/70 border-2 border-transparent group-hover:border-red-600 transition-all duration-300 flex items-center justify-center p-3 shadow-sm group-hover:shadow-md relative overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=500&q=80" 
+                  src="https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=500&q=80" 
                   alt="Categoría Roperos" 
                   loading="lazy" 
                   class="w-full h-full object-cover rounded-full drop-shadow-sm group-hover:scale-110 transition-transform duration-500"
                 >
               </div>
-              <span class="mt-4 font-poppins font-medium text-base text-slate-800 group-hover:text-red-600 transition-colors">
+              <span class="cat-label mt-3 sm:mt-4 font-poppins font-medium text-sm sm:text-base text-slate-800 group-hover:text-red-600 transition-colors">
                 Roperos
               </span>
-            </a>
+            </button>
           </div>
 
-          <!-- 3. Cocinas -->
+          <!-- 4. Cocinas -->
           <div class="swiper-slide">
-            <a href="#productos" class="group flex flex-col items-center text-center">
-              <div class="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full bg-red-50/70 border-2 border-transparent group-hover:border-red-600 transition-all duration-300 flex items-center justify-center p-3.5 shadow-sm group-hover:shadow-md relative overflow-hidden">
+            <button type="button" onclick="filterCategory('cocinas')" data-category-btn="cocinas" class="category-btn group flex flex-col items-center text-center w-full focus:outline-none cursor-pointer transition-transform duration-300 hover:-translate-y-1">
+              <div class="cat-circle w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full bg-red-50/70 border-2 border-transparent group-hover:border-red-600 transition-all duration-300 flex items-center justify-center p-3 shadow-sm group-hover:shadow-md relative overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=500&q=80" 
                   alt="Categoría Cocinas" 
@@ -360,50 +378,50 @@
                   class="w-full h-full object-cover rounded-full drop-shadow-sm group-hover:scale-110 transition-transform duration-500"
                 >
               </div>
-              <span class="mt-4 font-poppins font-medium text-base text-slate-800 group-hover:text-red-600 transition-colors">
+              <span class="cat-label mt-3 sm:mt-4 font-poppins font-medium text-sm sm:text-base text-slate-800 group-hover:text-red-600 transition-colors">
                 Cocinas
               </span>
-            </a>
+            </button>
           </div>
 
-          <!-- 4. Salas -->
+          <!-- 5. Salas -->
           <div class="swiper-slide">
-            <a href="#productos" class="group flex flex-col items-center text-center">
-              <div class="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full bg-red-50/70 border-2 border-transparent group-hover:border-red-600 transition-all duration-300 flex items-center justify-center p-3.5 shadow-sm group-hover:shadow-md relative overflow-hidden">
+            <button type="button" onclick="filterCategory('salas')" data-category-btn="salas" class="category-btn group flex flex-col items-center text-center w-full focus:outline-none cursor-pointer transition-transform duration-300 hover:-translate-y-1">
+              <div class="cat-circle w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full bg-red-50/70 border-2 border-transparent group-hover:border-red-600 transition-all duration-300 flex items-center justify-center p-3 shadow-sm group-hover:shadow-md relative overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=500&q=80" 
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=500&q=80" 
                   alt="Categoría Salas" 
                   loading="lazy" 
                   class="w-full h-full object-cover rounded-full drop-shadow-sm group-hover:scale-110 transition-transform duration-500"
                 >
               </div>
-              <span class="mt-4 font-poppins font-medium text-base text-slate-800 group-hover:text-red-600 transition-colors">
+              <span class="cat-label mt-3 sm:mt-4 font-poppins font-medium text-sm sm:text-base text-slate-800 group-hover:text-red-600 transition-colors">
                 Salas
               </span>
-            </a>
+            </button>
           </div>
 
-          <!-- 5. TV y Audio -->
+          <!-- 6. Combos Especiales -->
           <div class="swiper-slide">
-            <a href="#productos" class="group flex flex-col items-center text-center">
-              <div class="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full bg-red-50/70 border-2 border-transparent group-hover:border-red-600 transition-all duration-300 flex items-center justify-center p-3.5 shadow-sm group-hover:shadow-md relative overflow-hidden">
+            <button type="button" onclick="filterCategory('combos')" data-category-btn="combos" class="category-btn group flex flex-col items-center text-center w-full focus:outline-none cursor-pointer transition-transform duration-300 hover:-translate-y-1">
+              <div class="cat-circle w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full bg-red-50/70 border-2 border-transparent group-hover:border-red-600 transition-all duration-300 flex items-center justify-center p-3 shadow-sm group-hover:shadow-md relative overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=500&q=80" 
-                  alt="Categoría TV y Audio" 
+                  src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=500&q=80" 
+                  alt="Categoría Combos Especiales" 
                   loading="lazy" 
                   class="w-full h-full object-cover rounded-full drop-shadow-sm group-hover:scale-110 transition-transform duration-500"
                 >
               </div>
-              <span class="mt-4 font-poppins font-medium text-base text-slate-800 group-hover:text-red-600 transition-colors">
-                TV y Audio
+              <span class="cat-label mt-3 sm:mt-4 font-poppins font-medium text-sm sm:text-base text-slate-800 group-hover:text-red-600 transition-colors">
+                Combos Especiales
               </span>
-            </a>
+            </button>
           </div>
 
-          <!-- 6. Comedores -->
+          <!-- 7. Comedores -->
           <div class="swiper-slide">
-            <a href="#productos" class="group flex flex-col items-center text-center">
-              <div class="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full bg-red-50/70 border-2 border-transparent group-hover:border-red-600 transition-all duration-300 flex items-center justify-center p-3.5 shadow-sm group-hover:shadow-md relative overflow-hidden">
+            <button type="button" onclick="filterCategory('comedores')" data-category-btn="comedores" class="category-btn group flex flex-col items-center text-center w-full focus:outline-none cursor-pointer transition-transform duration-300 hover:-translate-y-1">
+              <div class="cat-circle w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full bg-red-50/70 border-2 border-transparent group-hover:border-red-600 transition-all duration-300 flex items-center justify-center p-3 shadow-sm group-hover:shadow-md relative overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=500&q=80" 
                   alt="Categoría Comedores" 
@@ -411,10 +429,10 @@
                   class="w-full h-full object-cover rounded-full drop-shadow-sm group-hover:scale-110 transition-transform duration-500"
                 >
               </div>
-              <span class="mt-4 font-poppins font-medium text-base text-slate-800 group-hover:text-red-600 transition-colors">
+              <span class="cat-label mt-3 sm:mt-4 font-poppins font-medium text-sm sm:text-base text-slate-800 group-hover:text-red-600 transition-colors">
                 Comedores
               </span>
-            </a>
+            </button>
           </div>
 
         </div>
@@ -424,82 +442,237 @@
   </section>
 
 
-  <!-- ==========================================
-       4. PRODUCTOS DESTACADOS (Grid de Ofertas)
+    <!-- ==========================================
+       4. PRODUCTOS DESTACADOS (Catálogo Interactivo)
        ========================================== -->
   <section id="productos" class="py-16 sm:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
       
-      <!-- Encabezado con título en Azul Oscuro y badges rojos -->
+      <!-- Encabezado con título en Azul Oscuro, contador y selector de filtros -->
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div>
           <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-red-600 mb-2 font-inter">
             <span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
-            Ofertas Exclusivas de Temporada
+            Catálogo Exclusivo de Mueblería
           </div>
           <h2 class="font-poppins font-bold text-3xl sm:text-4xl text-blue-900">
             Productos Destacados
           </h2>
           <p class="font-inter text-sm sm:text-base text-slate-500 mt-2 max-w-xl">
-            Precios rebajados por tiempo limitado en muebles de diseño y manufactura superior.
+            Muebles de alta calidad y manufactura superior con garantía certificada y facilidades de pago.
           </p>
         </div>
 
         <div class="flex items-center gap-2">
-          <span class="px-4 py-2 rounded-full text-xs font-bold bg-red-600 text-white shadow-sm">Precios de Rebaja</span>
-          <span class="px-4 py-2 rounded-full text-xs font-medium bg-slate-100 text-slate-700">Stock Garantizado</span>
+          <span id="active-category-pill" class="px-4 py-2 rounded-full text-xs font-bold bg-red-600 text-white shadow-sm transition-all duration-300">
+            Todas las categorías
+          </span>
+          <span id="products-count-badge" class="px-4 py-2 rounded-full text-xs font-medium bg-slate-100 text-slate-700">
+            6 productos
+          </span>
         </div>
       </div>
 
-      <!-- Grid de 4 columnas (grid-cols-1 md:grid-cols-2 lg:grid-cols-4) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Grid de Tarjetas de Producto (Filtro dinámico de categorías) -->
+      <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <!-- PRODUCTO 1: Silla Siena beige -->
-        <article class="group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+        <!-- PRODUCTO 1: Combo Matrimonial (Cama + Ropero) -->
+        <article data-category="combos" data-product-id="combo-matrimonial" class="product-card group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="openProductModal('combo-matrimonial')">
           <div>
             <div class="aspect-square w-full rounded-2xl bg-slate-50 relative overflow-hidden mb-4 flex items-center justify-center">
               <span class="absolute top-3 left-3 z-10 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full font-inter tracking-wider shadow-sm">
-                -25%
+                COMBO AHORRO
               </span>
-              <button onclick="toggleWishlist(this, 'Silla Siena beige')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
+              <button onclick="event.stopPropagation(); toggleWishlist(this, 'Combo Matrimonial (Cama + Ropero)')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
                 <svg class="w-4 h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
                 </svg>
               </button>
               <img 
-                src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=800&q=80" 
-                alt="Silla Siena beige" 
+                src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80" 
+                alt="Combo Matrimonial (Cama + Ropero)" 
                 loading="lazy" 
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               >
             </div>
-            <h3 class="font-poppins font-medium text-base sm:text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
-              Silla Siena beige
+            
+            <div class="flex items-center gap-2 mb-2">
+              <span class="inline-block text-[11px] font-semibold text-red-600 bg-red-50 px-2.5 py-0.5 rounded-full font-inter">
+                Combos Especiales
+              </span>
+              <span class="text-xs text-slate-400 font-inter">Medidas: 2.10m × 1.50m</span>
+            </div>
+
+            <h3 class="font-poppins font-semibold text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
+              Combo Matrimonial (Cama + Ropero)
             </h3>
-            <p class="text-xs text-slate-500 font-inter mt-1">Estructura de roble con tapizado premium</p>
+            <p class="text-xs text-slate-500 font-inter mt-1 line-clamp-2">
+              Set integral para dormitorio: Cama con cabecera acolchada y ropero de 3 cuerpos de madera sólida tratada.
+            </p>
+
+            <!-- Dos badges requeridos -->
+            <div class="flex flex-col gap-1.5 mt-3 pt-3 border-t border-slate-100 font-inter">
+              <span class="inline-flex items-center gap-1.5 bg-slate-50 text-slate-700 px-2.5 py-1 rounded-lg text-xs font-medium">
+                🚚 Envío a todo el país
+              </span>
+              <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-medium">
+                💵 Pago contra entrega
+              </span>
+            </div>
           </div>
 
-          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
             <div>
-              <span class="block text-xs text-slate-400 line-through font-inter">Q.1,265.00</span>
-              <span class="block font-poppins font-bold text-lg text-red-600">Q.949.00</span>
+              <span class="block text-xs text-slate-400 line-through font-inter">Q4,500</span>
+              <span class="block font-poppins font-bold text-xl text-red-600">Q3,599</span>
             </div>
-            <button onclick="addToCart('Silla Siena beige', 'Q.949.00')" aria-label="Comprar Silla Siena beige" class="w-10 h-10 rounded-full bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
-              <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
-              </svg>
-            </button>
+            <div class="flex items-center gap-2">
+              <button onclick="event.stopPropagation(); openProductModal('combo-matrimonial')" class="px-3.5 py-2 rounded-xl bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white text-xs font-bold font-inter transition-colors focus:outline-none">
+                Ver Detalles
+              </button>
+              <button onclick="event.stopPropagation(); addToCart('Combo Matrimonial (Cama + Ropero)', 'Q3,599')" aria-label="Comprar Combo Matrimonial" class="w-10 h-10 rounded-xl bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
+                <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </article>
 
-        <!-- PRODUCTO 2: Cama Sueño Matrimonial -->
-        <article class="group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+        <!-- PRODUCTO 2: Juego de Sala 3-2-1 -->
+        <article data-category="salas" data-product-id="sala-321" class="product-card group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="openProductModal('sala-321')">
           <div>
             <div class="aspect-square w-full rounded-2xl bg-slate-50 relative overflow-hidden mb-4 flex items-center justify-center">
               <span class="absolute top-3 left-3 z-10 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full font-inter tracking-wider shadow-sm">
-                OFERTA
+                OFERTA DEL MES
               </span>
-              <button onclick="toggleWishlist(this, 'Cama Sueño Matrimonial')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
+              <button onclick="event.stopPropagation(); toggleWishlist(this, 'Juego de Sala 3-2-1')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
+                <svg class="w-4 h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+                </svg>
+              </button>
+              <img 
+                src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" 
+                alt="Juego de Sala 3-2-1" 
+                loading="lazy" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              >
+            </div>
+            
+            <div class="flex items-center gap-2 mb-2">
+              <span class="inline-block text-[11px] font-semibold text-red-600 bg-red-50 px-2.5 py-0.5 rounded-full font-inter">
+                Salas
+              </span>
+              <span class="text-xs text-slate-400 font-inter">Medidas: 2.30m × 0.90m</span>
+            </div>
+
+            <h3 class="font-poppins font-semibold text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
+              Juego de Sala 3-2-1
+            </h3>
+            <p class="text-xs text-slate-500 font-inter mt-1 line-clamp-2">
+              Modular completo para 6 personas, tapicería resistente en microfibra suave y resortes reforzados.
+            </p>
+
+            <!-- Dos badges requeridos -->
+            <div class="flex flex-col gap-1.5 mt-3 pt-3 border-t border-slate-100 font-inter">
+              <span class="inline-flex items-center gap-1.5 bg-slate-50 text-slate-700 px-2.5 py-1 rounded-lg text-xs font-medium">
+                🚚 Envío a todo el país
+              </span>
+              <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-medium">
+                💵 Pago contra entrega
+              </span>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <span class="block text-xs text-slate-400 line-through font-inter">Q5,400</span>
+              <span class="block font-poppins font-bold text-xl text-red-600">Q4,299</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="event.stopPropagation(); openProductModal('sala-321')" class="px-3.5 py-2 rounded-xl bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white text-xs font-bold font-inter transition-colors focus:outline-none">
+                Ver Detalles
+              </button>
+              <button onclick="event.stopPropagation(); addToCart('Juego de Sala 3-2-1', 'Q4,299')" aria-label="Comprar Juego de Sala 3-2-1" class="w-10 h-10 rounded-xl bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
+                <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- PRODUCTO 3: Cocina Aurea Lisa -->
+        <article data-category="cocinas" data-product-id="cocina-aurea" class="product-card group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="openProductModal('cocina-aurea')">
+          <div>
+            <div class="aspect-square w-full rounded-2xl bg-slate-50 relative overflow-hidden mb-4 flex items-center justify-center">
+              <span class="absolute top-3 left-3 z-10 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full font-inter tracking-wider shadow-sm">
+                MODERNA
+              </span>
+              <button onclick="event.stopPropagation(); toggleWishlist(this, 'Cocina Aurea Lisa')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
+                <svg class="w-4 h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+                </svg>
+              </button>
+              <img 
+                src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80" 
+                alt="Cocina Aurea Lisa" 
+                loading="lazy" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              >
+            </div>
+            
+            <div class="flex items-center gap-2 mb-2">
+              <span class="inline-block text-[11px] font-semibold text-red-600 bg-red-50 px-2.5 py-0.5 rounded-full font-inter">
+                Cocinas
+              </span>
+              <span class="text-xs text-slate-400 font-inter">Medidas: 2.40m × 0.60m</span>
+            </div>
+
+            <h3 class="font-poppins font-semibold text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
+              Cocina Aurea Lisa
+            </h3>
+            <p class="text-xs text-slate-500 font-inter mt-1 line-clamp-2">
+              Gabinete modular con cubierta melamínica impermeable, rieles telescópicos y herrajes inoxidables.
+            </p>
+
+            <!-- Dos badges requeridos -->
+            <div class="flex flex-col gap-1.5 mt-3 pt-3 border-t border-slate-100 font-inter">
+              <span class="inline-flex items-center gap-1.5 bg-slate-50 text-slate-700 px-2.5 py-1 rounded-lg text-xs font-medium">
+                🚚 Envío a todo el país
+              </span>
+              <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-medium">
+                💵 Pago contra entrega
+              </span>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <span class="block text-xs text-slate-400 line-through font-inter">Q4,799</span>
+              <span class="block font-poppins font-bold text-xl text-red-600">Q3,899</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="event.stopPropagation(); openProductModal('cocina-aurea')" class="px-3.5 py-2 rounded-xl bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white text-xs font-bold font-inter transition-colors focus:outline-none">
+                Ver Detalles
+              </button>
+              <button onclick="event.stopPropagation(); addToCart('Cocina Aurea Lisa', 'Q3,899')" aria-label="Comprar Cocina Aurea Lisa" class="w-10 h-10 rounded-xl bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
+                <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- PRODUCTO 4: Cama Sueño Matrimonial -->
+        <article data-category="camas" data-product-id="cama-sueno" class="product-card group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="openProductModal('cama-sueno')">
+          <div>
+            <div class="aspect-square w-full rounded-2xl bg-slate-50 relative overflow-hidden mb-4 flex items-center justify-center">
+              <span class="absolute top-3 left-3 z-10 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full font-inter tracking-wider shadow-sm">
+                POPULAR
+              </span>
+              <button onclick="event.stopPropagation(); toggleWishlist(this, 'Cama Sueño Matrimonial')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
                 <svg class="w-4 h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
                 </svg>
@@ -511,147 +684,58 @@
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               >
             </div>
-            <h3 class="font-poppins font-medium text-base sm:text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
+            
+            <div class="flex items-center gap-2 mb-2">
+              <span class="inline-block text-[11px] font-semibold text-red-600 bg-red-50 px-2.5 py-0.5 rounded-full font-inter">
+                Camas
+              </span>
+              <span class="text-xs text-slate-400 font-inter">Medidas: 2.00m × 1.40m</span>
+            </div>
+
+            <h3 class="font-poppins font-semibold text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
               Cama Sueño Matrimonial
             </h3>
-            <p class="text-xs text-slate-500 font-inter mt-1">Soporte ortopédico y cabecera tapizada</p>
-          </div>
+            <p class="text-xs text-slate-500 font-inter mt-1 line-clamp-2">
+              Estructura sólida de pino curado anti-polilla, espaldar acolchado y base ortopédica para descanso reparador.
+            </p>
 
-          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <div>
-              <span class="block text-xs text-slate-400 line-through font-inter">Q.2,599.00</span>
-              <span class="block font-poppins font-bold text-lg text-red-600">Q.2,499.00</span>
-            </div>
-            <button onclick="addToCart('Cama Sueño Matrimonial', 'Q.2,499.00')" aria-label="Comprar Cama Sueño Matrimonial" class="w-10 h-10 rounded-full bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
-              <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
-              </svg>
-            </button>
-          </div>
-        </article>
-
-        <!-- PRODUCTO 3: Silla Nevia café -->
-        <article class="group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="aspect-square w-full rounded-2xl bg-slate-50 relative overflow-hidden mb-4 flex items-center justify-center">
-              <span class="absolute top-3 left-3 z-10 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full font-inter tracking-wider shadow-sm">
-                -25%
+            <!-- Dos badges requeridos -->
+            <div class="flex flex-col gap-1.5 mt-3 pt-3 border-t border-slate-100 font-inter">
+              <span class="inline-flex items-center gap-1.5 bg-slate-50 text-slate-700 px-2.5 py-1 rounded-lg text-xs font-medium">
+                🚚 Envío a todo el país
               </span>
-              <button onclick="toggleWishlist(this, 'Silla Nevia café')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
-                <svg class="w-4 h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+              <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-medium">
+                💵 Pago contra entrega
+              </span>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <span class="block text-xs text-slate-400 line-through font-inter">Q2,799</span>
+              <span class="block font-poppins font-bold text-xl text-red-600">Q2,199</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="event.stopPropagation(); openProductModal('cama-sueno')" class="px-3.5 py-2 rounded-xl bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white text-xs font-bold font-inter transition-colors focus:outline-none">
+                Ver Detalles
+              </button>
+              <button onclick="event.stopPropagation(); addToCart('Cama Sueño Matrimonial', 'Q2,199')" aria-label="Comprar Cama Sueño Matrimonial" class="w-10 h-10 rounded-xl bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
+                <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
                 </svg>
               </button>
-              <img 
-                src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=80" 
-                alt="Silla Nevia café" 
-                loading="lazy" 
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              >
             </div>
-            <h3 class="font-poppins font-medium text-base sm:text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
-              Silla Nevia café
-            </h3>
-            <p class="text-xs text-slate-500 font-inter mt-1">Madera estilizada con acabado cálido</p>
-          </div>
-
-          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <div>
-              <span class="block text-xs text-slate-400 line-through font-inter">Q.758.00</span>
-              <span class="block font-poppins font-bold text-lg text-red-600">Q.569.00</span>
-            </div>
-            <button onclick="addToCart('Silla Nevia café', 'Q.569.00')" aria-label="Comprar Silla Nevia café" class="w-10 h-10 rounded-full bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
-              <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
-              </svg>
-            </button>
           </div>
         </article>
 
-        <!-- PRODUCTO 4: Combo Descanso (Cama+Sillón) -->
-        <article class="group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+        <!-- PRODUCTO 5: Ropero Fiesta 3 Puertas -->
+        <article data-category="roperos" data-product-id="ropero-fiesta" class="product-card group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="openProductModal('ropero-fiesta')">
           <div>
             <div class="aspect-square w-full rounded-2xl bg-slate-50 relative overflow-hidden mb-4 flex items-center justify-center">
               <span class="absolute top-3 left-3 z-10 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full font-inter tracking-wider shadow-sm">
-                MEGA COMBO
+                STOCK LIMITADO
               </span>
-              <button onclick="toggleWishlist(this, 'Combo Descanso (Cama+Sillón)')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
-                <svg class="w-4 h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
-                </svg>
-              </button>
-              <img 
-                src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80" 
-                alt="Combo Descanso (Cama+Sillón)" 
-                loading="lazy" 
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              >
-            </div>
-            <h3 class="font-poppins font-medium text-base sm:text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
-              Combo Descanso (Cama+Sillón)
-            </h3>
-            <p class="text-xs text-slate-500 font-inter mt-1">Pack integral para dormitorio de autor</p>
-          </div>
-
-          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <div>
-              <span class="block text-xs text-slate-400 line-through font-inter">Q.2,799.00</span>
-              <span class="block font-poppins font-bold text-lg text-red-600">Q.2,399.00</span>
-            </div>
-            <button onclick="addToCart('Combo Descanso (Cama+Sillón)', 'Q.2,399.00')" aria-label="Comprar Combo Descanso" class="w-10 h-10 rounded-full bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
-              <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
-              </svg>
-            </button>
-          </div>
-        </article>
-
-        <!-- PRODUCTO 5: Silla exterior ratán -->
-        <article class="group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="aspect-square w-full rounded-2xl bg-slate-50 relative overflow-hidden mb-4 flex items-center justify-center">
-              <span class="absolute top-3 left-3 z-10 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full font-inter tracking-wider shadow-sm">
-                -25%
-              </span>
-              <button onclick="toggleWishlist(this, 'Silla exterior ratán')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
-                <svg class="w-4 h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
-                </svg>
-              </button>
-              <img 
-                src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=800&q=80" 
-                alt="Silla exterior ratán" 
-                loading="lazy" 
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              >
-            </div>
-            <h3 class="font-poppins font-medium text-base sm:text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
-              Silla exterior ratán
-            </h3>
-            <p class="text-xs text-slate-500 font-inter mt-1">Fibra tejida impermeable y estructura sólida</p>
-          </div>
-
-          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <div>
-              <span class="block text-xs text-slate-400 line-through font-inter">Q.1,398.00</span>
-              <span class="block font-poppins font-bold text-lg text-red-600">Q.1,048.99</span>
-            </div>
-            <button onclick="addToCart('Silla exterior ratán', 'Q.1,048.99')" aria-label="Comprar Silla exterior ratán" class="w-10 h-10 rounded-full bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
-              <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
-              </svg>
-            </button>
-          </div>
-        </article>
-
-        <!-- PRODUCTO 6: Ropero Fiesta 3 Puertas -->
-        <article class="group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="aspect-square w-full rounded-2xl bg-slate-50 relative overflow-hidden mb-4 flex items-center justify-center">
-              <span class="absolute top-3 left-3 z-10 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full font-inter tracking-wider shadow-sm">
-                OFERTA
-              </span>
-              <button onclick="toggleWishlist(this, 'Ropero Fiesta 3 Puertas')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
+              <button onclick="event.stopPropagation(); toggleWishlist(this, 'Ropero Fiesta 3 Puertas')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
                 <svg class="w-4 h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
                 </svg>
@@ -663,102 +747,129 @@
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               >
             </div>
-            <h3 class="font-poppins font-medium text-base sm:text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
+            
+            <div class="flex items-center gap-2 mb-2">
+              <span class="inline-block text-[11px] font-semibold text-red-600 bg-red-50 px-2.5 py-0.5 rounded-full font-inter">
+                Roperos
+              </span>
+              <span class="text-xs text-slate-400 font-inter">Medidas: 1.35m × 0.52m</span>
+            </div>
+
+            <h3 class="font-poppins font-semibold text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
               Ropero Fiesta 3 Puertas
             </h3>
-            <p class="text-xs text-slate-500 font-inter mt-1">Gran volumen interno y herrajes amortiguados</p>
+            <p class="text-xs text-slate-500 font-inter mt-1 line-clamp-2">
+              Armario con espejo central, barra para colgar de aluminio, repisas interiores y 2 gavetas con correderas metálicas.
+            </p>
+
+            <!-- Dos badges requeridos -->
+            <div class="flex flex-col gap-1.5 mt-3 pt-3 border-t border-slate-100 font-inter">
+              <span class="inline-flex items-center gap-1.5 bg-slate-50 text-slate-700 px-2.5 py-1 rounded-lg text-xs font-medium">
+                🚚 Envío a todo el país
+              </span>
+              <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-medium">
+                💵 Pago contra entrega
+              </span>
+            </div>
           </div>
 
-          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
             <div>
-              <span class="block text-xs text-slate-400 line-through font-inter">Q.3,299.00</span>
-              <span class="block font-poppins font-bold text-lg text-red-600">Q.3,199.00</span>
+              <span class="block text-xs text-slate-400 line-through font-inter">Q2,399</span>
+              <span class="block font-poppins font-bold text-xl text-red-600">Q1,899</span>
             </div>
-            <button onclick="addToCart('Ropero Fiesta 3 Puertas', 'Q.3,199.00')" aria-label="Comprar Ropero Fiesta" class="w-10 h-10 rounded-full bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
-              <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
-              </svg>
-            </button>
+            <div class="flex items-center gap-2">
+              <button onclick="event.stopPropagation(); openProductModal('ropero-fiesta')" class="px-3.5 py-2 rounded-xl bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white text-xs font-bold font-inter transition-colors focus:outline-none">
+                Ver Detalles
+              </button>
+              <button onclick="event.stopPropagation(); addToCart('Ropero Fiesta 3 Puertas', 'Q1,899')" aria-label="Comprar Ropero Fiesta 3 Puertas" class="w-10 h-10 rounded-xl bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
+                <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </article>
 
-        <!-- PRODUCTO 7: Silla Aria blanca -->
-        <article class="group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+        <!-- PRODUCTO 6: Juego de Comedor Florencia 6 Sillas -->
+        <article data-category="comedores" data-product-id="comedor-florencia" class="product-card group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="openProductModal('comedor-florencia')">
           <div>
             <div class="aspect-square w-full rounded-2xl bg-slate-50 relative overflow-hidden mb-4 flex items-center justify-center">
               <span class="absolute top-3 left-3 z-10 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full font-inter tracking-wider shadow-sm">
-                -25%
+                DESTACADO
               </span>
-              <button onclick="toggleWishlist(this, 'Silla Aria blanca')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
+              <button onclick="event.stopPropagation(); toggleWishlist(this, 'Juego de Comedor Florencia 6 Sillas')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
                 <svg class="w-4 h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
                 </svg>
               </button>
               <img 
-                src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?auto=format&fit=crop&w=800&q=80" 
-                alt="Silla Aria blanca" 
+                src="https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80" 
+                alt="Juego de Comedor Florencia 6 Sillas" 
                 loading="lazy" 
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               >
             </div>
-            <h3 class="font-poppins font-medium text-base sm:text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
-              Silla Aria blanca
-            </h3>
-            <p class="text-xs text-slate-500 font-inter mt-1">Línea arquitectónica escandinava</p>
-          </div>
-
-          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <div>
-              <span class="block text-xs text-slate-400 line-through font-inter">Q.1,598.00</span>
-              <span class="block font-poppins font-bold text-lg text-red-600">Q.1,198.50</span>
-            </div>
-            <button onclick="addToCart('Silla Aria blanca', 'Q.1,198.50')" aria-label="Comprar Silla Aria blanca" class="w-10 h-10 rounded-full bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
-              <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
-              </svg>
-            </button>
-          </div>
-        </article>
-
-        <!-- PRODUCTO 8: Ropero Two gavetas -->
-        <article class="group bg-white rounded-3xl p-5 border border-slate-200 hover:border-red-600/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="aspect-square w-full rounded-2xl bg-slate-50 relative overflow-hidden mb-4 flex items-center justify-center">
-              <span class="absolute top-3 left-3 z-10 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full font-inter tracking-wider shadow-sm">
-                OFERTA
+            
+            <div class="flex items-center gap-2 mb-2">
+              <span class="inline-block text-[11px] font-semibold text-red-600 bg-red-50 px-2.5 py-0.5 rounded-full font-inter">
+                Comedores
               </span>
-              <button onclick="toggleWishlist(this, 'Ropero Two gavetas')" aria-label="Agregar a favoritos" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm text-slate-600 flex items-center justify-center hover:text-red-600 transition-colors shadow-sm focus:outline-none">
-                <svg class="w-4 h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+              <span class="text-xs text-slate-400 font-inter">Medidas: 1.60m × 0.90m</span>
+            </div>
+
+            <h3 class="font-poppins font-semibold text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
+              Juego de Comedor Florencia 6 Sillas
+            </h3>
+            <p class="text-xs text-slate-500 font-inter mt-1 line-clamp-2">
+              Mesa espaciosa en madera maciza con sellador poliuretano de alta resistencia y 6 sillas tapizadas acolchadas.
+            </p>
+
+            <!-- Dos badges requeridos -->
+            <div class="flex flex-col gap-1.5 mt-3 pt-3 border-t border-slate-100 font-inter">
+              <span class="inline-flex items-center gap-1.5 bg-slate-50 text-slate-700 px-2.5 py-1 rounded-lg text-xs font-medium">
+                🚚 Envío a todo el país
+              </span>
+              <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-medium">
+                💵 Pago contra entrega
+              </span>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <span class="block text-xs text-slate-400 line-through font-inter">Q3,999</span>
+              <span class="block font-poppins font-bold text-xl text-red-600">Q3,199</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="event.stopPropagation(); openProductModal('comedor-florencia')" class="px-3.5 py-2 rounded-xl bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white text-xs font-bold font-inter transition-colors focus:outline-none">
+                Ver Detalles
+              </button>
+              <button onclick="event.stopPropagation(); addToCart('Juego de Comedor Florencia 6 Sillas', 'Q3,199')" aria-label="Comprar Comedor Florencia" class="w-10 h-10 rounded-xl bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
+                <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
                 </svg>
               </button>
-              <img 
-                src="https://images.unsplash.com/photo-1544457070-4cd773b4d71e?auto=format&fit=crop&w=800&q=80" 
-                alt="Ropero Two gavetas" 
-                loading="lazy" 
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              >
             </div>
-            <h3 class="font-poppins font-medium text-base sm:text-lg text-slate-900 group-hover:text-red-600 transition-colors line-clamp-1">
-              Ropero Two gavetas
-            </h3>
-            <p class="text-xs text-slate-500 font-inter mt-1">Cajones deslizables de cierre silencioso</p>
-          </div>
-
-          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <div>
-              <span class="block text-xs text-slate-400 line-through font-inter">Q.2,499.00</span>
-              <span class="block font-poppins font-bold text-lg text-red-600">Q.2,399.00</span>
-            </div>
-            <button onclick="addToCart('Ropero Two gavetas', 'Q.2,399.00')" aria-label="Comprar Ropero Two gavetas" class="w-10 h-10 rounded-full bg-red-50 hover:bg-red-600 hover:text-white text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none">
-              <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
-              </svg>
-            </button>
           </div>
         </article>
 
       </div>
+
+      <!-- Estado vacío si una categoría no tiene productos -->
+      <div id="no-products-msg" class="hidden text-center py-16">
+        <div class="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+          </svg>
+        </div>
+        <h4 class="font-poppins font-bold text-lg text-slate-800">No encontramos muebles en este ambiente</h4>
+        <p class="font-inter text-sm text-slate-500 mt-1">Explora las demás categorías o contáctanos por WhatsApp para pedidos a medida.</p>
+        <button onclick="filterCategory('todas')" class="mt-4 px-5 py-2.5 rounded-full bg-red-600 text-white font-inter text-xs font-bold shadow hover:bg-red-700 transition-colors">
+          Ver Todo el Catálogo
+        </button>
+      </div>
+
     </div>
   </section>
 
@@ -1097,6 +1208,144 @@
     </div>
   </div>
 
+  
+  <!-- ==========================================
+       MODAL DE DETALLES DEL PRODUCTO (Especificaciones, Medidas y WhatsApp)
+       ========================================== -->
+  <div id="product-detail-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4 sm:p-6 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-product-title">
+    <div class="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Botón de Cerrar Modal -->
+      <button onclick="closeProductModal()" aria-label="Cerrar modal" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-600 flex items-center justify-center transition-colors shadow-sm focus:outline-none">
+        <svg class="w-5 h-5 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        <!-- Columna Izquierda: Foto Grande del Mueble -->
+        <div class="relative bg-slate-100 p-6 flex items-center justify-center min-h-[300px] md:min-h-[460px] overflow-hidden">
+          <span id="modal-product-badge" class="absolute top-4 left-4 z-10 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full font-inter shadow-md">
+            Combos Especiales
+          </span>
+          <img 
+            id="modal-product-img" 
+            src="" 
+            alt="Detalle del producto" 
+            class="w-full h-full object-cover max-h-[420px] rounded-2xl shadow-sm hover:scale-105 transition-transform duration-500"
+          >
+          <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-xl p-2.5 text-center text-xs font-inter text-slate-700 shadow-sm border border-slate-100">
+            🔍 Fotografía real de alta fidelidad y manufactura premium
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Título, Precios, Medidas, Beneficios y WhatsApp -->
+        <div class="p-6 sm:p-8 flex flex-col justify-between space-y-5">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span id="modal-category-tag" class="text-xs font-semibold text-red-600 uppercase tracking-wider font-inter">
+                Mueblería Fina
+              </span>
+            </div>
+
+            <h3 id="modal-product-title" class="font-poppins font-bold text-2xl sm:text-3xl text-blue-900 leading-tight">
+              Nombre del Mueble
+            </h3>
+
+            <!-- Precio -->
+            <div class="flex items-baseline gap-3 mt-3">
+              <span id="modal-product-price" class="font-poppins font-black text-3xl sm:text-4xl text-red-600">
+                Q3,599
+              </span>
+              <span id="modal-product-original-price" class="font-inter text-base text-slate-400 line-through">
+                Q4,500
+              </span>
+              <span class="bg-red-50 text-red-600 text-xs font-bold px-2.5 py-0.5 rounded-full font-inter">
+                Ahorro Especial
+              </span>
+            </div>
+
+            <p id="modal-product-description" class="font-inter text-sm text-slate-600 leading-relaxed mt-3">
+              Descripción completa del producto con acabados y materiales de primera calidad.
+            </p>
+
+            <!-- c) Sección de Especificaciones y Medidas -->
+            <div class="mt-5 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-4 h-4 text-red-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"/>
+                </svg>
+                <h4 class="font-poppins font-bold text-xs uppercase tracking-wider text-blue-900">
+                  Especificaciones y Medidas
+                </h4>
+              </div>
+
+              <!-- Visible para que el cliente sepa si cabe en su espacio -->
+              <div class="grid grid-cols-3 gap-2 text-center font-inter">
+                <div class="bg-white p-2.5 rounded-xl border border-slate-200 shadow-2xs">
+                  <span class="block text-[10px] uppercase font-bold text-slate-400">Largo</span>
+                  <span id="modal-medida-largo" class="font-poppins font-bold text-sm text-blue-900">2.10m</span>
+                </div>
+                <div class="bg-white p-2.5 rounded-xl border border-slate-200 shadow-2xs">
+                  <span class="block text-[10px] uppercase font-bold text-slate-400">Ancho</span>
+                  <span id="modal-medida-ancho" class="font-poppins font-bold text-sm text-blue-900">1.50m</span>
+                </div>
+                <div class="bg-white p-2.5 rounded-xl border border-slate-200 shadow-2xs">
+                  <span class="block text-[10px] uppercase font-bold text-slate-400">Alto</span>
+                  <span id="modal-medida-alto" class="font-poppins font-bold text-sm text-blue-900">0.90m</span>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-500 font-inter mt-2 text-center">
+                * Medidas estándar garantizadas para accesos de puertas y recintos modernos.
+              </p>
+            </div>
+
+            <!-- d) Beneficios Destacados -->
+            <div class="mt-5 space-y-2 font-inter text-xs sm:text-sm text-slate-700">
+              <div class="flex items-center gap-2 bg-slate-50/70 px-3 py-1.5 rounded-lg border border-slate-100">
+                <span>✅</span>
+                <span class="font-semibold text-slate-900">4 Años de Garantía</span>
+                <span class="text-slate-500 text-xs">— Certificado por escrito contra defectos</span>
+              </div>
+              <div class="flex items-center gap-2 bg-slate-50/70 px-3 py-1.5 rounded-lg border border-slate-100">
+                <span>💳</span>
+                <span class="font-semibold text-slate-900">Hasta 18 Cuotas sin recargo VISA</span>
+                <span class="text-slate-500 text-xs">— Y Credomatic</span>
+              </div>
+              <div class="flex items-center gap-2 bg-slate-50/70 px-3 py-1.5 rounded-lg border border-slate-100">
+                <span>📦</span>
+                <span class="font-semibold text-slate-900">Pago contra entrega</span>
+                <span class="text-slate-500 text-xs">— Paga en efectivo o tarjeta al recibir</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- e) Botón Gigante de CTA: Comprar por WhatsApp -->
+          <div class="pt-4 border-t border-slate-200 space-y-2.5">
+            <a 
+              id="modal-whatsapp-cta" 
+              href="#" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="w-full inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20ba59] text-white py-4 px-6 rounded-2xl font-poppins font-bold text-base sm:text-lg shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-200 text-center"
+            >
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+              <span>📲 Comprar por WhatsApp</span>
+            </a>
+            
+            <button onclick="closeProductModal()" class="w-full py-2.5 text-center text-xs font-inter text-slate-400 hover:text-slate-600 transition-colors">
+              Continuar viendo más muebles
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
   <!-- Toast Notificación -->
   <div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-xl font-inter text-xs sm:text-sm flex items-center gap-3 opacity-0 pointer-events-none transition-all duration-300">
     <span class="w-2 h-2 rounded-full bg-red-500"></span>
@@ -1105,14 +1354,112 @@
 
 
   <!-- ==========================================
-       SCRIPTS: Swiper & Lógica de Interacción
+       SCRIPTS: Swiper, Filtros & Modal WhatsApp
        ========================================== -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-    // Inicialización del Carrusel Swiper de Categorías
+    // ==========================================
+    // 1. BASE DE DATOS DE PRODUCTOS Y MEDIDAS
+    // ==========================================
+    const PRODUCTS_DATA = {
+      'combo-matrimonial': {
+        id: 'combo-matrimonial',
+        title: 'Combo Matrimonial (Cama + Ropero)',
+        category: 'combos',
+        categoryLabel: 'Combos Especiales',
+        price: 'Q3,599',
+        originalPrice: 'Q4,500',
+        image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80',
+        description: 'Set integral para dormitorio: Cama matrimonial con cabecera capitonada en lino suave y base ortopédica reforzada + Ropero de 3 cuerpos de madera sólida con espejo central y correderas telescópicas.',
+        medidas: {
+          largo: '2.10m',
+          ancho: '1.50m',
+          alto: '1.95m'
+        }
+      },
+      'sala-321': {
+        id: 'sala-321',
+        title: 'Juego de Sala 3-2-1',
+        category: 'salas',
+        categoryLabel: 'Salas',
+        price: 'Q4,299',
+        originalPrice: 'Q5,400',
+        image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80',
+        description: 'Juego de sala modular completo para 6 personas. Espuma de alta densidad (30kg/m³), estructura de pino curado anti-polilla y tapizado premium repelente a manchas y líquidos.',
+        medidas: {
+          largo: '2.30m',
+          ancho: '0.90m',
+          alto: '0.85m'
+        }
+      },
+      'cocina-aurea': {
+        id: 'cocina-aurea',
+        title: 'Cocina Aurea Lisa',
+        category: 'cocinas',
+        categoryLabel: 'Cocinas',
+        price: 'Q3,899',
+        originalPrice: 'Q4,799',
+        image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80',
+        description: 'Gabinete de cocina modular completo con top melamínico antihumedad, gavetas con rieles telescópicos alemanes de cierre suave y tiradores minimalistas de aluminio negro.',
+        medidas: {
+          largo: '2.40m',
+          ancho: '0.60m',
+          alto: '0.90m'
+        }
+      },
+      'cama-sueno': {
+        id: 'cama-sueno',
+        title: 'Cama Sueño Matrimonial',
+        category: 'camas',
+        categoryLabel: 'Camas',
+        price: 'Q2,199',
+        originalPrice: 'Q2,799',
+        image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80',
+        description: 'Cama matrimonial con estructura de madera de pino tratada y secada en horno. Espaldar capitonado con espuma ergonómica y base reforzada con soporte ortopédico garantizado.',
+        medidas: {
+          largo: '2.00m',
+          ancho: '1.40m',
+          alto: '1.15m'
+        }
+      },
+      'ropero-fiesta': {
+        id: 'ropero-fiesta',
+        title: 'Ropero Fiesta 3 Puertas',
+        category: 'roperos',
+        categoryLabel: 'Roperos',
+        price: 'Q1,899',
+        originalPrice: 'Q2,399',
+        image: 'https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=800&q=80',
+        description: 'Ropero de 3 puertas con amplio colgador para prendas largas, 4 repisas internas organizadoras y 2 gavetas inferiores con cerradura de seguridad y tiradores metálicos.',
+        medidas: {
+          largo: '1.35m',
+          ancho: '0.52m',
+          alto: '1.90m'
+        }
+      },
+      'comedor-florencia': {
+        id: 'comedor-florencia',
+        title: 'Juego de Comedor Florencia 6 Sillas',
+        category: 'comedores',
+        categoryLabel: 'Comedores',
+        price: 'Q3,199',
+        originalPrice: 'Q3,999',
+        image: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80',
+        description: 'Mesa de comedor rectangular en madera maciza con acabado al duco y poliuretano resistente al calor y rayones. Incluye 6 sillas ergonómicas con tapiz antimanchas.',
+        medidas: {
+          largo: '1.60m',
+          ancho: '0.90m',
+          alto: '0.78m'
+        }
+      }
+    };
+
+    // ==========================================
+    // 2. INICIALIZACIÓN SWIPER CATEGORÍAS
+    // ==========================================
     const swiperCategories = new Swiper('.categories-swiper', {
-      slidesPerView: 2,
-      spaceBetween: 20,
+      slidesPerView: 2.3,
+      spaceBetween: 14,
       loop: false,
       navigation: {
         nextEl: '#cat-next',
@@ -1120,28 +1467,176 @@
       },
       breakpoints: {
         480: {
-          slidesPerView: 3,
-          spaceBetween: 24,
+          slidesPerView: 3.2,
+          spaceBetween: 16,
         },
         768: {
-          slidesPerView: 4,
-          spaceBetween: 28,
+          slidesPerView: 4.5,
+          spaceBetween: 20,
         },
         1024: {
-          slidesPerView: 6,
-          spaceBetween: 32,
+          slidesPerView: 7,
+          spaceBetween: 24,
         }
       }
     });
 
-    // Menú móvil
-    const mobileBtn = document.getElementById('mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+    // ==========================================
+    // 3. FILTRADO DINÁMICO POR CATEGORÍA
+    // ==========================================
+    const categoryLabelsMap = {
+      'todas': 'Todas las categorías',
+      'camas': 'Camas',
+      'roperos': 'Roperos',
+      'cocinas': 'Cocinas',
+      'salas': 'Salas',
+      'combos': 'Combos Especiales',
+      'comedores': 'Comedores'
+    };
+
+    function filterCategory(categoryKey) {
+      const cards = document.querySelectorAll('.product-card');
+      const activePill = document.getElementById('active-category-pill');
+      const countBadge = document.getElementById('products-count-badge');
+      const noProductsMsg = document.getElementById('no-products-msg');
+      let visibleCount = 0;
+
+      // Actualizar estilo visual activo de los botones de categoría
+      const categoryButtons = document.querySelectorAll('.category-btn');
+      categoryButtons.forEach(btn => {
+        const btnCategory = btn.getAttribute('data-category-btn');
+        const circle = btn.querySelector('.cat-circle');
+        const label = btn.querySelector('.cat-label');
+        
+        if (btnCategory === categoryKey) {
+          circle.classList.add('border-red-600', 'ring-4', 'ring-red-100', 'shadow-md');
+          circle.classList.remove('border-transparent');
+          label.classList.add('text-red-600', 'font-bold');
+          label.classList.remove('text-slate-800', 'font-medium');
+        } else {
+          circle.classList.remove('border-red-600', 'ring-4', 'ring-red-100', 'shadow-md');
+          circle.classList.add('border-transparent');
+          label.classList.remove('text-red-600', 'font-bold');
+          label.classList.add('text-slate-800', 'font-medium');
+        }
+      });
+
+      // Filtrar tarjetas en el grid
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (categoryKey === 'todas' || cardCat === categoryKey) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Actualizar badges de encabezado
+      if (activePill) {
+        activePill.textContent = categoryLabelsMap[categoryKey] || 'Catálogo';
+      }
+      if (countBadge) {
+        countBadge.textContent = `${visibleCount} ${visibleCount === 1 ? 'producto' : 'productos'}`;
+      }
+
+      // Mensaje de estado si no hay productos
+      if (noProductsMsg) {
+        if (visibleCount === 0) {
+          noProductsMsg.classList.remove('hidden');
+        } else {
+          noProductsMsg.classList.add('hidden');
+        }
+      }
+
+      // Scroll suave a productos si se hace clic desde lejos
+      const productosSection = document.getElementById('productos');
+      if (window.scrollY < productosSection.offsetTop - 300) {
+        productosSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // ==========================================
+    // 4. MODAL DE DETALLES DEL PRODUCTO (WhatsApp)
+    // ==========================================
+    const productModal = document.getElementById('product-detail-modal');
+
+    function openProductModal(productId) {
+      const product = PRODUCTS_DATA[productId];
+      if (!product || !productModal) return;
+
+      // Elementos del modal
+      const modalImg = document.getElementById('modal-product-img');
+      const modalBadge = document.getElementById('modal-product-badge');
+      const modalCategoryTag = document.getElementById('modal-category-tag');
+      const modalTitle = document.getElementById('modal-product-title');
+      const modalPrice = document.getElementById('modal-product-price');
+      const modalOriginalPrice = document.getElementById('modal-product-original-price');
+      const modalDesc = document.getElementById('modal-product-description');
+      const modalLargo = document.getElementById('modal-medida-largo');
+      const modalAncho = document.getElementById('modal-medida-ancho');
+      const modalAlto = document.getElementById('modal-medida-alto');
+      const modalWhatsappCta = document.getElementById('modal-whatsapp-cta');
+
+      // Asignar datos
+      modalImg.src = product.image;
+      modalImg.alt = product.title;
+      modalBadge.textContent = product.categoryLabel;
+      modalCategoryTag.textContent = product.categoryLabel;
+      modalTitle.textContent = product.title;
+      modalPrice.textContent = product.price;
+      modalOriginalPrice.textContent = product.originalPrice;
+      modalDesc.textContent = product.description;
+
+      modalLargo.textContent = product.medidas.largo;
+      modalAncho.textContent = product.medidas.ancho;
+      modalAlto.textContent = product.medidas.alto;
+
+      // Enlace dinámico a WhatsApp para Cristian Garcia (+502 4741-1412)
+      const whatsappMsg = `Hola Cristian Garcia, me interesa el ${product.title} de ${product.price} que vi en la web. ¿Tienen disponible?`;
+      const whatsappUrl = `https://wa.me/50247411412?text=${encodeURIComponent(whatsappMsg)}`;
+      modalWhatsappCta.href = whatsappUrl;
+
+      // Mostrar modal
+      productModal.classList.remove('hidden');
+      productModal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeProductModal() {
+      if (!productModal) return;
+      productModal.classList.add('hidden');
+      productModal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    // Cerrar modal al hacer clic en el backdrop exterior
+    if (productModal) {
+      productModal.addEventListener('click', (e) => {
+        if (e.target === productModal) {
+          closeProductModal();
+        }
+      });
+    }
+
+    // Cerrar con tecla Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && productModal && !productModal.classList.contains('hidden')) {
+        closeProductModal();
+      }
     });
 
-    // Navbar cambio de sombra al scroll
+    // ==========================================
+    // 5. NAVBAR, MENÚ MÓVIL Y BÚSQUEDA
+    // ==========================================
+    const mobileBtn = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
     const navbar = document.getElementById('main-navbar');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 20) {
@@ -1157,23 +1652,25 @@
     const closeSearch = document.getElementById('close-search');
     const searchInput = document.getElementById('search-input');
 
-    searchBtn.addEventListener('click', () => {
-      searchModal.classList.remove('hidden');
-      searchModal.classList.add('flex');
-      searchInput.focus();
-    });
+    if (searchBtn && searchModal && closeSearch && searchInput) {
+      searchBtn.addEventListener('click', () => {
+        searchModal.classList.remove('hidden');
+        searchModal.classList.add('flex');
+        searchInput.focus();
+      });
 
-    closeSearch.addEventListener('click', () => {
-      searchModal.classList.add('hidden');
-      searchModal.classList.remove('flex');
-    });
-
-    searchModal.addEventListener('click', (e) => {
-      if (e.target === searchModal) {
+      closeSearch.addEventListener('click', () => {
         searchModal.classList.add('hidden');
         searchModal.classList.remove('flex');
-      }
-    });
+      });
+
+      searchModal.addEventListener('click', (e) => {
+        if (e.target === searchModal) {
+          searchModal.classList.add('hidden');
+          searchModal.classList.remove('flex');
+        }
+      });
+    }
 
     // Drawer del Carrito
     const cartBtn = document.getElementById('cart-btn');
@@ -1182,18 +1679,22 @@
     const closeCart = document.getElementById('close-cart');
 
     function openCart() {
-      cartDrawer.classList.remove('translate-x-full');
-      cartBackdrop.classList.remove('hidden');
+      if (cartDrawer && cartBackdrop) {
+        cartDrawer.classList.remove('translate-x-full');
+        cartBackdrop.classList.remove('hidden');
+      }
     }
 
     function closeCartDrawer() {
-      cartDrawer.classList.add('translate-x-full');
-      cartBackdrop.classList.add('hidden');
+      if (cartDrawer && cartBackdrop) {
+        cartDrawer.classList.add('translate-x-full');
+        cartBackdrop.classList.add('hidden');
+      }
     }
 
-    cartBtn.addEventListener('click', openCart);
-    closeCart.addEventListener('click', closeCartDrawer);
-    cartBackdrop.addEventListener('click', closeCartDrawer);
+    if (cartBtn) cartBtn.addEventListener('click', openCart);
+    if (closeCart) closeCart.addEventListener('click', closeCartDrawer);
+    if (cartBackdrop) cartBackdrop.addEventListener('click', closeCartDrawer);
 
     // Sistema de Notificaciones Toast
     const toast = document.getElementById('toast');
@@ -1201,6 +1702,7 @@
     let toastTimeout;
 
     function showToast(msg) {
+      if (!toast || !toastMsg) return;
       clearTimeout(toastTimeout);
       toastMsg.textContent = msg;
       toast.classList.remove('opacity-0', 'pointer-events-none');
@@ -1215,7 +1717,7 @@
 
     function addToCart(title, price) {
       currentCartCount++;
-      cartCountEl.textContent = currentCartCount;
+      if (cartCountEl) cartCountEl.textContent = currentCartCount;
       showToast(`"${title}" añadido al carrito (${price})`);
     }
 
@@ -1231,7 +1733,7 @@
         svg.setAttribute('fill', 'none');
         svg.classList.remove('text-red-600');
         wishlistCount = Math.max(0, wishlistCount - 1);
-        showToast(`Removido de favoritos`);
+        showToast('Removido de favoritos');
       } else {
         svg.setAttribute('fill', 'currentColor');
         svg.classList.add('text-red-600');
@@ -1239,10 +1741,12 @@
         showToast(`"${title}" guardado en tus favoritos`);
       }
 
-      if (wishlistCount > 0) {
-        wishlistBadge.classList.remove('hidden');
-      } else {
-        wishlistBadge.classList.add('hidden');
+      if (wishlistBadge) {
+        if (wishlistCount > 0) {
+          wishlistBadge.classList.remove('hidden');
+        } else {
+          wishlistBadge.classList.add('hidden');
+        }
       }
     }
   </script>
