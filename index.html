@@ -229,15 +229,15 @@
         </a>
       </nav>
 
-      <!-- Iconos SVG a la derecha: Lupa, Corazón, Carrito (Hitbox aumentado, relative z-50 y pointer-events-none) -->
-      <div class="relative z-50 flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
+      <!-- Iconos SVG a la derecha: Lupa, Corazón, Carrito (Hitbox aumentado, relative z-[60] y pointer-events-none) -->
+      <div class="relative z-[60] flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
         <!-- Buscador -->
         <button 
           type="button" 
           id="search-btn" 
-          onclick="openSearchModal(); document.getElementById('search-modal').classList.remove('hidden'); document.getElementById('search-modal').classList.add('flex');" 
+          onclick="document.getElementById('search-modal').classList.toggle('hidden'); const sm = document.getElementById('search-modal'); if(!sm.classList.contains('hidden')){ sm.classList.add('flex'); const si = document.getElementById('search-input'); if(si) si.focus(); } else { sm.classList.remove('flex'); }" 
           aria-label="Abrir buscador" 
-          class="p-3 relative z-50 flex items-center justify-center cursor-pointer active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
+          class="p-3 relative z-[60] cursor-pointer flex items-center justify-center active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
         >
           <svg class="w-5 h-5 stroke-[1.8] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
@@ -250,7 +250,7 @@
           id="wishlist-btn" 
           onclick="openWishlist()" 
           aria-label="Ver favoritos" 
-          class="p-3 relative z-50 flex items-center justify-center cursor-pointer active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
+          class="p-3 relative z-[60] cursor-pointer flex items-center justify-center active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
         >
           <svg class="w-5 h-5 stroke-[1.8] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
@@ -264,7 +264,7 @@
           id="nav-cart-btn" 
           onclick="openCart(); document.getElementById('cart-drawer').classList.remove('translate-x-full'); document.getElementById('cart-drawer').classList.add('translate-x-0'); document.getElementById('cart-drawer-backdrop').classList.remove('hidden'); document.body.classList.add('overflow-hidden');" 
           aria-label="Ver carrito" 
-          class="p-3 relative z-50 flex items-center justify-center cursor-pointer active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
+          class="p-3 relative z-[60] cursor-pointer flex items-center justify-center active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
         >
           <svg class="w-5 h-5 stroke-[1.8] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119.993z"/>
@@ -274,13 +274,13 @@
           </span>
         </button>
 
-        <!-- Menú Móvil -->
+        <!-- Menú Móvil (Hamburguesa) -->
         <button 
           type="button" 
           id="mobile-menu-toggle" 
           onclick="document.getElementById('mobile-menu').classList.toggle('hidden');" 
           aria-label="Abrir menú móvil" 
-          class="md:hidden p-3 relative z-50 flex items-center justify-center cursor-pointer active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
+          class="md:hidden p-3 relative z-[60] cursor-pointer flex items-center justify-center active:scale-95 transition-transform rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 focus:outline-none"
         >
           <svg class="w-6 h-6 stroke-[1.8] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
@@ -291,7 +291,7 @@
     </div>
 
     <!-- Menú Desplegable Móvil -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-5 space-y-3">
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-5 space-y-3 relative z-[60]">
       <a href="#hero" class="block text-base font-semibold text-red-600 py-1.5">Inicio</a>
       <a href="#categorias" class="block text-base font-medium text-slate-700 hover:text-red-600 py-1.5">Categorías</a>
       <a href="#productos" class="block text-base font-medium text-slate-700 hover:text-red-600 py-1.5">Promociones</a>
@@ -393,6 +393,31 @@
                 height="1000"
                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               >
+
+              <!-- Flechas de Navegación en PC (Carrusel) -->
+              <button 
+                type="button" 
+                id="hero-carousel-prev" 
+                onclick="event.stopPropagation(); prevHeroSlide();" 
+                aria-label="Oferta anterior" 
+                class="hidden md:flex absolute top-1/2 -translate-y-1/2 left-4 bg-white/80 p-2 rounded-full shadow-md cursor-pointer z-40 hover:bg-white border border-gray-200 text-slate-700 hover:text-red-600 transition-colors focus:outline-none"
+              >
+                <svg class="w-5 h-5 stroke-[2] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
+                </svg>
+              </button>
+
+              <button 
+                type="button" 
+                id="hero-carousel-next" 
+                onclick="event.stopPropagation(); nextHeroSlideManual();" 
+                aria-label="Oferta siguiente" 
+                class="hidden md:flex absolute top-1/2 -translate-y-1/2 right-4 bg-white/80 p-2 rounded-full shadow-md cursor-pointer z-40 hover:bg-white border border-gray-200 text-slate-700 hover:text-red-600 transition-colors focus:outline-none"
+              >
+                <svg class="w-5 h-5 stroke-[2] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                </svg>
+              </button>
 
               <!-- Tarjeta Flotante Interior de Oferta -->
               <div id="hero-carousel-card" class="absolute bottom-3.5 sm:bottom-5 left-0 right-0 w-[90%] max-w-sm mx-auto p-3.5 sm:p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-100 shadow-lg flex items-center justify-between gap-3 transition-opacity duration-500 cursor-pointer group-hover:border-red-200">
@@ -1935,7 +1960,7 @@
        ========================================== -->
 
   <!-- Modal de Búsqueda con Sugerencias en Vivo -->
-  <div id="search-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-start justify-center pt-16 sm:pt-24 px-4 transition-opacity" role="dialog" aria-modal="true" aria-label="Buscador de productos">
+  <div id="search-modal" class="fixed inset-0 z-[70] bg-slate-900/60 backdrop-blur-sm hidden items-start justify-center pt-16 sm:pt-24 px-4 transition-opacity" role="dialog" aria-modal="true" aria-label="Buscador de productos">
     <div class="bg-white rounded-3xl p-5 sm:p-6 w-full max-w-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[85vh]">
       
       <!-- Input de búsqueda -->
@@ -3301,6 +3326,16 @@
       heroInterval = setInterval(autoAdvanceHero, 4500);
     }
 
+    function prevHeroSlide() {
+      const prevIndex = (heroCurrentIndex - 1 + HERO_OFFERS.length) % HERO_OFFERS.length;
+      goToHeroSlide(prevIndex);
+    }
+
+    function nextHeroSlideManual() {
+      const nextIndex = (heroCurrentIndex + 1) % HERO_OFFERS.length;
+      goToHeroSlide(nextIndex);
+    }
+
     // 1. Navegación manual mediante los puntos indicadores
     heroDots.forEach((dot, idx) => {
       dot.addEventListener('click', (e) => {
@@ -3310,9 +3345,63 @@
       });
     });
 
-    // 2. Abrir modal de detalles al hacer clic en la tarjeta de oferta del carrusel
+    // 2. Flechas de navegación en escritorio (PC)
+    const heroPrevBtn = document.getElementById('hero-carousel-prev');
+    const heroNextBtn = document.getElementById('hero-carousel-next');
+
+    if (heroPrevBtn) {
+      heroPrevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        prevHeroSlide();
+      });
+    }
+
+    if (heroNextBtn) {
+      heroNextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        nextHeroSlideManual();
+      });
+    }
+
+    // 3. Soporte táctil / Swipe en móvil (Carrusel)
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isSwiping = false;
+
+    if (heroContainer) {
+      heroContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        isSwiping = false;
+      }, { passive: true });
+
+      heroContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+
+        // Si la diferencia es mayor a 50px (arrastre a la izquierda), siguiente oferta
+        if (diff > 50) {
+          isSwiping = true;
+          nextHeroSlideManual();
+          resetHeroInterval();
+        } 
+        // Si es menor a -50px (arrastre a la derecha), oferta anterior
+        else if (diff < -50) {
+          isSwiping = true;
+          prevHeroSlide();
+          resetHeroInterval();
+        }
+      }, { passive: true });
+    }
+
+    // 4. Abrir modal de detalles al hacer clic en la tarjeta de oferta del carrusel
     if (heroContainer) {
       heroContainer.addEventListener('click', () => {
+        if (isSwiping) {
+          isSwiping = false;
+          return;
+        }
         const currentOffer = HERO_OFFERS[heroCurrentIndex];
         if (currentOffer) {
           openProductModal(currentOffer);
