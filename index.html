@@ -1958,9 +1958,9 @@
         </svg>
         <h3 class="font-poppins font-bold text-lg text-blue-900">Carrito de Promociones</h3>
       </div>
-      <!-- Botón de Cerrar Modal con 'X' SVG -->
-      <button id="close-cart" onclick="closeCartDrawer()" aria-label="Cerrar carrito" class="p-2 text-slate-500 hover:text-red-600 hover:bg-slate-100 rounded-full transition-colors focus:outline-none cursor-pointer">
-        <svg class="w-5 h-5 stroke-[2] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Botón de Cerrar Modal con 'X' SVG (Hitbox aumentado para móviles) -->
+      <button id="btn-cerrar-carrito" onclick="closeCartDrawer()" aria-label="Cerrar carrito" class="p-3 w-12 h-12 flex items-center justify-center rounded-full hover:bg-gray-100 cursor-pointer active:scale-95 transition-all text-slate-600 hover:text-red-600 focus:outline-none">
+        <svg class="w-6 h-6 stroke-[2] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
@@ -3032,43 +3032,44 @@
     // ==========================================
     // 6. DRAWER Y LÓGICA COMPLETA DEL CARRITO
     // ==========================================
+    const cartDrawer = document.getElementById('cart-drawer');
+    const cartBackdrop = document.getElementById('cart-drawer-backdrop');
+    const btnCerrar = document.getElementById('btn-cerrar-carrito');
+    const cartBtn = document.getElementById('cart-btn');
+    const navCartBtn = document.getElementById('nav-cart-btn');
+
     function openCart() {
-      const drawer = document.getElementById('cart-drawer');
-      const backdrop = document.getElementById('cart-drawer-backdrop');
-      if (drawer && backdrop) {
-        drawer.classList.remove('translate-x-full');
-        drawer.classList.add('translate-x-0');
-        backdrop.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
+      if (cartDrawer) {
+        cartDrawer.classList.remove('translate-x-full');
+        cartDrawer.classList.add('translate-x-0');
       }
+      if (cartBackdrop) {
+        cartBackdrop.classList.remove('hidden');
+      }
+      document.body.classList.add('overflow-hidden');
     }
 
     function closeCartDrawer() {
-      const drawer = document.getElementById('cart-drawer');
-      const backdrop = document.getElementById('cart-drawer-backdrop');
-      if (drawer && backdrop) {
-        drawer.classList.remove('translate-x-0');
-        drawer.classList.add('translate-x-full');
-        backdrop.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
+      if (cartDrawer) {
+        cartDrawer.classList.remove('translate-x-0');
+        cartDrawer.classList.add('translate-x-full');
       }
+      if (cartBackdrop) {
+        cartBackdrop.classList.add('hidden');
+      }
+      document.body.classList.remove('overflow-hidden');
     }
 
-    // Vincular eventos de apertura y cierre de forma segura
-    const cartBtn = document.getElementById('cart-btn');
-    const navCartBtn = document.getElementById('nav-cart-btn');
-    const closeCartBtn = document.getElementById('close-cart');
-    const cartBackdrop = document.getElementById('cart-drawer-backdrop');
-
-    if (cartBtn) cartBtn.addEventListener('click', openCart);
-    if (navCartBtn) navCartBtn.addEventListener('click', openCart);
-    if (closeCartBtn) {
-      closeCartBtn.addEventListener('click', (e) => {
+    if (btnCerrar) {
+      btnCerrar.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
         closeCartDrawer();
       });
     }
+
+    if (cartBtn) cartBtn.addEventListener('click', openCart);
+    if (navCartBtn) navCartBtn.addEventListener('click', openCart);
     if (cartBackdrop) {
       cartBackdrop.addEventListener('click', (e) => {
         e.preventDefault();
