@@ -246,12 +246,12 @@
           <span id="wishlist-badge" class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-600 hidden"></span>
         </button>
 
-        <!-- Carrito de compras -->
-        <button id="cart-btn" aria-label="Ver carrito" class="relative p-2.5 rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 transition-colors focus:outline-none focus:ring-2 focus:ring-red-600/30">
+        <!-- Carrito de compras (Navbar) -->
+        <button id="nav-cart-btn" onclick="openCart()" aria-label="Ver carrito" class="relative p-2.5 rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 transition-colors focus:outline-none focus:ring-2 focus:ring-red-600/30">
           <svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119.993z"/>
           </svg>
-          <span id="cart-count" class="absolute -top-0.5 -right-0.5 bg-red-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center font-inter shadow-sm">
+          <span id="nav-cart-count" class="cart-badge-count absolute -top-0.5 -right-0.5 bg-red-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center font-inter shadow-sm">
             2
           </span>
         </button>
@@ -1850,8 +1850,34 @@
 
 
   <!-- ==========================================
-       7. WHATSAPP FLOTANTE
+       7. BOTONES FLOTANTES (CARRITO FAB & WHATSAPP)
        ========================================== -->
+  <!-- Botón de Carrito Flotante (FAB) -->
+  <aside class="fixed bottom-24 right-6 z-50">
+    <button 
+      id="cart-btn" 
+      onclick="openCart()" 
+      aria-label="Ver carrito de compras"
+      class="group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-red-600 hover:bg-red-700 text-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-red-600/40 cursor-pointer"
+    >
+      <!-- Icono Carrito SVG (CERO EMOJIS) -->
+      <svg class="w-6 h-6 sm:w-7 sm:h-7 stroke-[1.8] relative z-10 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119.993z"/>
+      </svg>
+
+      <!-- Badge Contador Rojo/Blanco con número de productos -->
+      <span id="cart-count" class="cart-badge-count absolute -top-1 -right-1 bg-white text-red-600 border-2 border-red-600 text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center font-inter shadow-md">
+        2
+      </span>
+
+      <!-- Tooltip al pasar el mouse -->
+      <span class="absolute right-full mr-3 px-3 py-1.5 rounded-xl bg-slate-900 text-white text-xs font-inter font-medium tracking-wide shadow-xl whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200">
+        Ver Carrito
+      </span>
+    </button>
+  </aside>
+
+  <!-- WhatsApp Flotante -->
   <aside class="fixed bottom-6 right-6 z-50">
     <a 
       href="https://wa.me/50242238100?text=Hola%20Dimexa,%20vengo%20de%20la%20página%20de%20La%20Mueblería%20y%20deseo%20asesoría%20sobre%20una%20promoción" 
@@ -1923,7 +1949,7 @@
   </div>
 
   <!-- Drawer Lateral del Carrito -->
-  <div id="cart-drawer-backdrop" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden transition-opacity"></div>
+  <div id="cart-drawer-backdrop" onclick="closeCartDrawer()" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden transition-opacity cursor-pointer"></div>
   <div id="cart-drawer" class="fixed top-0 right-0 z-50 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
     <div class="p-6 border-b border-slate-200 flex items-center justify-between">
       <div class="flex items-center gap-2">
@@ -1932,8 +1958,9 @@
         </svg>
         <h3 class="font-poppins font-bold text-lg text-blue-900">Carrito de Promociones</h3>
       </div>
-      <button id="close-cart" class="p-2 text-slate-600 hover:text-red-600 focus:outline-none">
-        <svg class="w-5 h-5 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Botón de Cerrar Modal con 'X' SVG -->
+      <button id="close-cart" onclick="closeCartDrawer()" aria-label="Cerrar carrito" class="p-2 text-slate-500 hover:text-red-600 hover:bg-slate-100 rounded-full transition-colors focus:outline-none cursor-pointer">
+        <svg class="w-5 h-5 stroke-[2] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
@@ -3005,28 +3032,56 @@
     // ==========================================
     // 6. DRAWER Y LÓGICA COMPLETA DEL CARRITO
     // ==========================================
-    const cartBtn = document.getElementById('cart-btn');
-    const cartDrawer = document.getElementById('cart-drawer');
-    const cartBackdrop = document.getElementById('cart-drawer-backdrop');
-    const closeCart = document.getElementById('close-cart');
-
     function openCart() {
-      if (cartDrawer && cartBackdrop) {
-        cartDrawer.classList.remove('translate-x-full');
-        cartBackdrop.classList.remove('hidden');
+      const drawer = document.getElementById('cart-drawer');
+      const backdrop = document.getElementById('cart-drawer-backdrop');
+      if (drawer && backdrop) {
+        drawer.classList.remove('translate-x-full');
+        drawer.classList.add('translate-x-0');
+        backdrop.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
       }
     }
 
     function closeCartDrawer() {
-      if (cartDrawer && cartBackdrop) {
-        cartDrawer.classList.add('translate-x-full');
-        cartBackdrop.classList.add('hidden');
+      const drawer = document.getElementById('cart-drawer');
+      const backdrop = document.getElementById('cart-drawer-backdrop');
+      if (drawer && backdrop) {
+        drawer.classList.remove('translate-x-0');
+        drawer.classList.add('translate-x-full');
+        backdrop.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
       }
     }
 
+    // Vincular eventos de apertura y cierre de forma segura
+    const cartBtn = document.getElementById('cart-btn');
+    const navCartBtn = document.getElementById('nav-cart-btn');
+    const closeCartBtn = document.getElementById('close-cart');
+    const cartBackdrop = document.getElementById('cart-drawer-backdrop');
+
     if (cartBtn) cartBtn.addEventListener('click', openCart);
-    if (closeCart) closeCart.addEventListener('click', closeCartDrawer);
-    if (cartBackdrop) cartBackdrop.addEventListener('click', closeCartDrawer);
+    if (navCartBtn) navCartBtn.addEventListener('click', openCart);
+    if (closeCartBtn) {
+      closeCartBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeCartDrawer();
+      });
+    }
+    if (cartBackdrop) {
+      cartBackdrop.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeCartDrawer();
+      });
+    }
+
+    // Cerrar también con tecla Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeCartDrawer();
+      }
+    });
 
     // Array reactivo del carrito
     let cart = [
@@ -3050,23 +3105,26 @@
 
     function renderCart() {
       const cartItemsContainer = document.getElementById('cart-items');
-      const cartCountEl = document.getElementById('cart-count');
       const cartTotalEl = document.getElementById('cart-total-amount');
       const checkoutWhatsappBtn = document.getElementById('cart-whatsapp-checkout');
 
       if (!cartItemsContainer) return;
 
+      // 1. Limpieza absoluta del contenedor para evitar duplicados acumulados
+      cartItemsContainer.innerHTML = '';
+
       const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
       const totalPrice = cart.reduce((sum, item) => sum + (item.numericPrice * item.quantity), 0);
 
-      if (cartCountEl) {
-        cartCountEl.textContent = totalItems;
+      // Actualizar todos los badges del contador en Navbar y botón FAB flotante
+      document.querySelectorAll('#cart-count, #nav-cart-count, .cart-badge-count').forEach(badge => {
+        badge.textContent = totalItems;
         if (totalItems > 0) {
-          cartCountEl.classList.remove('hidden');
+          badge.classList.remove('hidden');
         } else {
-          cartCountEl.classList.add('hidden');
+          badge.classList.add('hidden');
         }
-      }
+      });
 
       if (cartTotalEl) {
         cartTotalEl.textContent = 'Q.' + totalPrice.toLocaleString('es-GT', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -3103,8 +3161,8 @@
               </div>
             </div>
             <!-- Botón de Eliminar con ícono SVG de bote de basura (Trash) -->
-            <button onclick="removeFromCart(${index})" aria-label="Eliminar ${item.title}" class="p-2 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors focus:outline-none flex-shrink-0" title="Eliminar del carrito">
-              <svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button onclick="removeFromCart(${index})" aria-label="Eliminar ${item.title}" class="p-2 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors focus:outline-none flex-shrink-0 cursor-pointer" title="Eliminar del carrito">
+              <svg class="w-5 h-5 stroke-[1.8] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/>
               </svg>
             </button>
@@ -3121,20 +3179,31 @@
       }
     }
 
+    let isAddingToCart = false;
+
     function addToCart(title, price, customImg) {
-      let product = Object.values(PRODUCTS_DATA).find(p => p.title === title || p.id === title);
+      // Prevención de doble ejecución o doble clic
+      if (isAddingToCart) return;
+      isAddingToCart = true;
+      setTimeout(() => { isAddingToCart = false; }, 250);
+
+      let product = Object.values(PRODUCTS_DATA).find(p => p.title.toLowerCase().trim() === title.toLowerCase().trim() || p.id === title);
       if (product && (product.stock === false || product.agotado === true)) {
         showToast('Este producto se encuentra agotado temporalmente');
         return;
       }
       const imgUrl = customImg || (product ? product.image : 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=200&q=80');
-      const cleanTitle = product ? product.title : title;
+      const cleanTitle = (product ? product.title : title).trim();
       const cleanPrice = product ? product.price : price;
       const numPrice = parseFloat(String(cleanPrice).replace(/[^0-9.]/g, '')) || 0;
 
-      const existingIndex = cart.findIndex(i => i.title === cleanTitle);
+      // Buscar si el producto ya existe en el carrito comparando ID o título
+      const existingIndex = cart.findIndex(i => {
+        return (product && i.id === product.id) || i.title.toLowerCase().trim() === cleanTitle.toLowerCase().trim();
+      });
+
       if (existingIndex > -1) {
-        cart[existingIndex].quantity++;
+        cart[existingIndex].quantity += 1;
       } else {
         cart.push({
           id: product ? product.id : ('prod-' + Date.now()),
@@ -3168,26 +3237,23 @@
     let cartToastTimer = null;
 
     function triggerCartCountBounce() {
-      const cartCountEl = document.getElementById('cart-count');
-      const cartBtn = document.getElementById('cart-btn');
-
-      if (cartCountEl) {
-        cartCountEl.classList.remove('animate-cart-bounce');
-        void cartCountEl.offsetWidth; // Forzar reflow para reiniciar animación
-        cartCountEl.classList.add('animate-cart-bounce');
+      document.querySelectorAll('#cart-count, #nav-cart-count, .cart-badge-count').forEach(badge => {
+        badge.classList.remove('animate-cart-bounce');
+        void badge.offsetWidth;
+        badge.classList.add('animate-cart-bounce');
         setTimeout(() => {
-          cartCountEl.classList.remove('animate-cart-bounce');
+          badge.classList.remove('animate-cart-bounce');
         }, 550);
-      }
+      });
 
-      if (cartBtn) {
-        cartBtn.classList.remove('scale-110');
-        void cartBtn.offsetWidth;
-        cartBtn.classList.add('scale-110');
+      document.querySelectorAll('#cart-btn, #nav-cart-btn').forEach(btn => {
+        btn.classList.remove('scale-110');
+        void btn.offsetWidth;
+        btn.classList.add('scale-110');
         setTimeout(() => {
-          cartBtn.classList.remove('scale-110');
+          btn.classList.remove('scale-110');
         }, 350);
-      }
+      });
     }
 
     function showCartSuccessToast(title, price) {
