@@ -351,8 +351,14 @@
             <div class="absolute w-72 sm:w-88 lg:w-96 h-72 sm:h-88 lg:h-96 bg-red-100 rounded-full blob-organic-1 -top-6 -left-4"></div>
             <div class="absolute w-64 sm:w-80 lg:w-88 h-80 sm:h-96 lg:h-[26rem] bg-red-50 rounded-[3rem] blob-organic-2 -bottom-6 -right-4 rotate-6 border border-red-100"></div>
             
-            <!-- Contenedor del Carrusel de Ofertas con transición suave (Fade In/Out) -->
-            <div id="hero-carousel-container" class="relative z-10 w-[88%] h-[88%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white group transition-opacity duration-500 ease-in-out">
+            <!-- Contenedor del Carrusel de Ofertas con transición suave (Fade In/Out) y Clickable -->
+            <div 
+              id="hero-carousel-container" 
+              role="button" 
+              tabindex="0" 
+              aria-label="Ver detalles de la oferta promocional"
+              class="relative z-10 w-[88%] h-[88%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white group transition-opacity duration-500 ease-in-out cursor-pointer select-none"
+            >
               <!-- Imagen del Carrusel -->
               <img 
                 id="hero-carousel-img"
@@ -365,7 +371,7 @@
               >
 
               <!-- Tarjeta Flotante Interior de Oferta -->
-              <div id="hero-carousel-card" class="absolute bottom-3.5 sm:bottom-5 left-0 right-0 w-[90%] max-w-sm mx-auto p-3.5 sm:p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-100 shadow-lg flex items-center justify-between gap-3 transition-opacity duration-500">
+              <div id="hero-carousel-card" class="absolute bottom-3.5 sm:bottom-5 left-0 right-0 w-[90%] max-w-sm mx-auto p-3.5 sm:p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-100 shadow-lg flex items-center justify-between gap-3 transition-opacity duration-500 cursor-pointer group-hover:border-red-200">
                 <div class="flex-1 min-w-0">
                   <span id="hero-carousel-badge" class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-red-600 text-white font-inter mb-1">
                     OFERTA DEL MES
@@ -380,11 +386,11 @@
               </div>
             </div>
 
-            <!-- Indicadores de puntos del Carrusel -->
-            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full border border-slate-100 shadow-sm">
-              <span class="hero-dot w-4 h-2 rounded-full bg-red-600 transition-all duration-300"></span>
-              <span class="hero-dot w-2 h-2 rounded-full bg-slate-300 transition-all duration-300"></span>
-              <span class="hero-dot w-2 h-2 rounded-full bg-slate-300 transition-all duration-300"></span>
+            <!-- Indicadores de puntos del Carrusel (Navegación Manual Cliqueable) -->
+            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-slate-100 shadow-sm">
+              <button type="button" aria-label="Ver oferta 1: Sofá Velvet Modular" class="hero-dot cursor-pointer w-4 h-2 rounded-full bg-red-600 transition-all duration-300 focus:outline-none"></button>
+              <button type="button" aria-label="Ver oferta 2: Combo Matrimonial Deluxe" class="hero-dot cursor-pointer w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300 focus:outline-none"></button>
+              <button type="button" aria-label="Ver oferta 3: Comedor Florencia 6 Sillas" class="hero-dot cursor-pointer w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300 focus:outline-none"></button>
             </div>
 
             <!-- Insignia Exterior Flotante -->
@@ -2667,8 +2673,13 @@
     const productModal = document.getElementById('product-detail-modal');
     const btnCerrarModal = document.getElementById('btn-cerrar-modal');
 
-    function openProductModal(productId) {
-      const product = PRODUCTS_DATA[productId];
+    function openProductModal(productOrId) {
+      let product = null;
+      if (typeof productOrId === 'string') {
+        product = PRODUCTS_DATA[productOrId];
+      } else if (productOrId && typeof productOrId === 'object') {
+        product = productOrId;
+      }
       if (!product || !productModal) return;
 
       const modalImg = document.getElementById('modal-product-img');
@@ -2690,16 +2701,17 @@
         : [product.image];
 
       modalImg.src = productImages[0];
-      modalImg.alt = product.title;
-      modalCategoryTag.textContent = product.categoryLabel;
-      modalTitle.textContent = product.title;
-      modalPrice.textContent = product.price;
-      modalOriginalPrice.textContent = product.originalPrice;
-      modalDesc.textContent = product.description;
+      modalImg.alt = product.title || 'Detalle del producto';
+      if (modalCategoryTag) modalCategoryTag.textContent = product.categoryLabel || product.badge || 'Oferta Especial';
+      if (modalTitle) modalTitle.textContent = product.title || 'Mueble Dimexa';
+      if (modalPrice) modalPrice.textContent = product.price || '';
+      if (modalOriginalPrice) modalOriginalPrice.textContent = product.originalPrice || product.oldPrice || '';
+      if (modalDesc) modalDesc.textContent = product.description || product.desc || '';
 
-      modalLargo.textContent = product.medidas.largo;
-      modalAncho.textContent = product.medidas.ancho;
-      modalAlto.textContent = product.medidas.alto;
+      const medidas = product.medidas || { largo: 'Estándar', ancho: 'Estándar', alto: 'Estándar' };
+      if (modalLargo) modalLargo.textContent = medidas.largo || '-';
+      if (modalAncho) modalAncho.textContent = medidas.ancho || '-';
+      if (modalAlto) modalAlto.textContent = medidas.alto || '-';
 
       const isAgotado = product.stock === false || product.agotado === true;
 
@@ -3104,36 +3116,90 @@
     }
 
     // ==========================================
-    // 5. CARRUSEL AUTOMÁTICO EN EL HERO (CADA 4s)
+    // 5. CARRUSEL EN EL HERO (AUTOMÁTICO & MANUAL)
     // ==========================================
     const HERO_OFFERS = [
       {
-        image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1000&q=80',
-        badge: 'OFERTA DEL MES',
+        id: 'sofa-velvet-modular',
         title: 'Sofá Velvet Modular',
+        category: 'salas',
+        categoryLabel: 'Salas',
+        badge: 'OFERTA DEL MES',
         desc: 'Alta durabilidad y tapiz suave antimanchas',
+        description: 'Elegante sofá velvet de alta durabilidad con tapiz suave antimanchas y estructura de madera tratada. Confort ergonómico de línea contemporánea.',
         oldPrice: 'Q.4,200.00',
-        price: 'Q.3,499.00'
+        originalPrice: 'Q.4,200.00',
+        price: 'Q.3,499.00',
+        image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1000&q=80',
+        imagenes: [
+          'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80'
+        ],
+        stock: true,
+        agotado: false,
+        medidas: {
+          largo: '2.40m',
+          ancho: '0.95m',
+          alto: '0.85m'
+        }
       },
       {
-        image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1000&q=80',
-        badge: 'COMBO AHORRO',
+        id: 'combo-matrimonial',
         title: 'Combo Matrimonial Deluxe',
+        category: 'combos',
+        categoryLabel: 'Combos Especiales',
+        badge: 'COMBO AHORRO',
         desc: 'Cama ortopédica + Ropero de 3 cuerpos',
+        description: 'Set integral para dormitorio: Cama con cabecera acolchada y soporte ortopédico más ropero de 3 cuerpos en madera sólida tratada con finos acabados.',
         oldPrice: 'Q.4,500.00',
-        price: 'Q.3,599.00'
+        originalPrice: 'Q.4,500.00',
+        price: 'Q.3,599.00',
+        image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1000&q=80',
+        imagenes: [
+          'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80'
+        ],
+        stock: true,
+        agotado: false,
+        medidas: {
+          largo: '2.10m',
+          ancho: '1.50m',
+          alto: '1.95m'
+        }
       },
       {
-        image: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1000&q=80',
-        badge: 'EDICIÓN LIMITADA',
+        id: 'comedor-florencia',
         title: 'Comedor Florencia 6 Sillas',
+        category: 'comedores',
+        categoryLabel: 'Comedores',
+        badge: 'EDICIÓN LIMITADA',
         desc: 'Madera tratada y 6 sillas ergonómicas',
+        description: 'Mesa espaciosa construida en madera maciza de alta resistencia con acabado protector de poliuretano y juego de 6 sillas ergonómicas tapizadas.',
         oldPrice: 'Q.3,999.00',
-        price: 'Q.3,199.00'
+        originalPrice: 'Q.3,999.00',
+        price: 'Q.3,199.00',
+        image: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1000&q=80',
+        imagenes: [
+          'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?auto=format&fit=crop&w=800&q=80'
+        ],
+        stock: true,
+        agotado: false,
+        medidas: {
+          largo: '1.60m',
+          ancho: '0.90m',
+          alto: '0.78m'
+        }
       }
     ];
 
     let heroCurrentIndex = 0;
+    let heroInterval = null;
+    let isHeroTransitioning = false;
+
     const heroContainer = document.getElementById('hero-carousel-container');
     const heroImg = document.getElementById('hero-carousel-img');
     const heroBadge = document.getElementById('hero-carousel-badge');
@@ -3143,42 +3209,107 @@
     const heroPrice = document.getElementById('hero-carousel-price');
     const heroDots = document.querySelectorAll('.hero-dot');
 
-    function updateHeroOffer() {
-      if (!heroContainer || !heroImg) return;
-      
-      // Transición suave fade-out
-      heroContainer.classList.add('opacity-0');
-      
-      setTimeout(() => {
-        heroCurrentIndex = (heroCurrentIndex + 1) % HERO_OFFERS.length;
-        const current = HERO_OFFERS[heroCurrentIndex];
-        
+    function updateHeroSlideDOM(index) {
+      const current = HERO_OFFERS[index];
+      if (!current) return;
+
+      if (heroImg) {
         heroImg.src = current.image;
         heroImg.alt = current.title;
-        if (heroBadge) heroBadge.textContent = current.badge;
-        if (heroTitle) heroTitle.textContent = current.title;
-        if (heroDesc) heroDesc.textContent = current.desc;
-        if (heroOldPrice) heroOldPrice.textContent = current.oldPrice;
-        if (heroPrice) heroPrice.textContent = current.price;
-        
-        // Actualizar indicadores de puntos
-        heroDots.forEach((dot, idx) => {
-          if (idx === heroCurrentIndex) {
-            dot.classList.remove('bg-slate-300', 'w-2');
-            dot.classList.add('bg-red-600', 'w-4');
-          } else {
-            dot.classList.remove('bg-red-600', 'w-4');
-            dot.classList.add('bg-slate-300', 'w-2');
-          }
-        });
+      }
+      if (heroBadge) heroBadge.textContent = current.badge;
+      if (heroTitle) heroTitle.textContent = current.title;
+      if (heroDesc) heroDesc.textContent = current.desc;
+      if (heroOldPrice) heroOldPrice.textContent = current.oldPrice;
+      if (heroPrice) heroPrice.textContent = current.price;
 
-        // Transición suave fade-in
-        heroContainer.classList.remove('opacity-0');
-      }, 500);
+      // Actualizar estado visual de los puntos indicadores
+      heroDots.forEach((dot, idx) => {
+        if (idx === index) {
+          dot.classList.remove('bg-slate-300', 'w-2');
+          dot.classList.add('bg-red-600', 'w-4');
+        } else {
+          dot.classList.remove('bg-red-600', 'w-4');
+          dot.classList.add('bg-slate-300', 'w-2');
+        }
+      });
     }
 
-    // Intervalo cada 4 segundos
-    setInterval(updateHeroOffer, 4000);
+    function goToHeroSlide(index) {
+      if (index === heroCurrentIndex || index < 0 || index >= HERO_OFFERS.length || isHeroTransitioning) return;
+      if (!heroContainer || !heroImg) return;
+
+      isHeroTransitioning = true;
+      heroContainer.classList.add('opacity-0');
+
+      setTimeout(() => {
+        heroCurrentIndex = index;
+        updateHeroSlideDOM(heroCurrentIndex);
+        heroContainer.classList.remove('opacity-0');
+        setTimeout(() => {
+          isHeroTransitioning = false;
+        }, 250);
+      }, 250);
+
+      // Reiniciar el temporizador para evitar cambios repentinos tras interacción manual
+      resetHeroInterval();
+    }
+
+    function autoAdvanceHero() {
+      if (!heroContainer || !heroImg || isHeroTransitioning) return;
+      
+      isHeroTransitioning = true;
+      heroContainer.classList.add('opacity-0');
+
+      setTimeout(() => {
+        heroCurrentIndex = (heroCurrentIndex + 1) % HERO_OFFERS.length;
+        updateHeroSlideDOM(heroCurrentIndex);
+        heroContainer.classList.remove('opacity-0');
+        setTimeout(() => {
+          isHeroTransitioning = false;
+        }, 250);
+      }, 250);
+    }
+
+    function resetHeroInterval() {
+      if (heroInterval) {
+        clearInterval(heroInterval);
+      }
+      heroInterval = setInterval(autoAdvanceHero, 4500);
+    }
+
+    // 1. Navegación manual mediante los puntos indicadores
+    heroDots.forEach((dot, idx) => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        goToHeroSlide(idx);
+      });
+    });
+
+    // 2. Abrir modal de detalles al hacer clic en la tarjeta de oferta del carrusel
+    if (heroContainer) {
+      heroContainer.addEventListener('click', () => {
+        const currentOffer = HERO_OFFERS[heroCurrentIndex];
+        if (currentOffer) {
+          openProductModal(currentOffer);
+        }
+      });
+
+      // Accesibilidad por teclado (Enter o Espacio)
+      heroContainer.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const currentOffer = HERO_OFFERS[heroCurrentIndex];
+          if (currentOffer) {
+            openProductModal(currentOffer);
+          }
+        }
+      });
+    }
+
+    // Iniciar temporizador automático
+    resetHeroInterval();
 
     // ==========================================
     // 6. DRAWER Y LÓGICA COMPLETA DEL CARRITO
