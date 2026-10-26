@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" class="scroll-smooth overflow-x-hidden">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,26 +75,26 @@
     }
   </style>
 </head>
-<body class="bg-white text-slate-800 antialiased selection:bg-red-600 selection:text-white">
+<body class="bg-white text-slate-800 antialiased selection:bg-red-600 selection:text-white overflow-x-hidden">
 
   <!-- ==========================================
        1. NAVBAR (Limpio con Logo en Rojo)
        ========================================== -->
   <header id="main-navbar" class="sticky top-0 z-40 w-full transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-3 sm:px-8 lg:px-12 h-20 flex items-center justify-between gap-2">
       
-      <!-- Logo Tipográfico en Rojo Vivo a la izquierda con Lilita One -->
-      <a href="#" class="group flex flex-col justify-center focus:outline-none">
-        <span style="font-family: 'Lilita One', cursive;" class="text-3xl sm:text-4xl tracking-wider text-red-600 group-hover:text-red-700 transition-colors duration-200">
+      <!-- Logo Tipográfico Responsivo en Rojo Vivo a la izquierda con Lilita One -->
+      <a href="#" class="group flex flex-col justify-center focus:outline-none min-w-0 flex-1 sm:flex-initial">
+        <span style="font-family: 'Lilita One', cursive;" class="text-xl sm:text-3xl md:text-4xl tracking-wide text-red-600 group-hover:text-red-700 transition-colors duration-200 truncate">
           LA MUEBLERÍA
         </span>
-        <span class="text-[9px] tracking-[0.35em] text-slate-500 uppercase font-inter -mt-0.5 font-medium">
+        <span class="text-[8px] sm:text-[9px] tracking-[0.15em] sm:tracking-[0.35em] text-slate-500 uppercase font-inter -mt-0.5 font-medium truncate">
           Guatemala &bull; Muebles de Alta Gama
         </span>
       </a>
 
       <!-- Menú al centro en Gris oscuro con hover en Rojo -->
-      <nav class="hidden md:flex items-center space-x-9 text-sm font-medium font-inter tracking-wide text-slate-700">
+      <nav class="hidden md:flex items-center space-x-6 lg:space-x-9 text-sm font-medium font-inter tracking-wide text-slate-700">
         <a href="#hero" class="relative py-1 text-red-600 font-semibold group">
           Inicio
           <span class="absolute bottom-0 left-0 w-full h-[2px] bg-red-600 rounded-full"></span>
@@ -118,7 +118,7 @@
       </nav>
 
       <!-- Iconos SVG a la derecha: Lupa, Corazón, Carrito (hover en Rojo) -->
-      <div class="flex items-center space-x-3 sm:space-x-4">
+      <div class="flex items-center space-x-1.5 sm:space-x-3 flex-shrink-0">
         <!-- Buscador -->
         <button id="search-btn" aria-label="Abrir buscador" class="p-2.5 rounded-full text-slate-700 hover:text-red-600 hover:bg-red-50 transition-colors focus:outline-none focus:ring-2 focus:ring-red-600/30">
           <svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -239,32 +239,40 @@
             <div class="absolute w-72 sm:w-88 lg:w-96 h-72 sm:h-88 lg:h-96 bg-red-100 rounded-full blob-organic-1 -top-6 -left-4"></div>
             <div class="absolute w-64 sm:w-80 lg:w-88 h-80 sm:h-96 lg:h-[26rem] bg-red-50 rounded-[3rem] blob-organic-2 -bottom-6 -right-4 rotate-6 border border-red-100"></div>
             
-            <!-- Contenedor del Sofá / Mueble con sombra elegante -->
-            <div class="relative z-10 w-[88%] h-[88%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white group">
-              <!-- LCP Image con fetchpriority="high" -->
+            <!-- Contenedor del Carrusel de Ofertas con transición suave (Fade In/Out) -->
+            <div id="hero-carousel-container" class="relative z-10 w-[88%] h-[88%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white group transition-opacity duration-500 ease-in-out">
+              <!-- Imagen del Carrusel -->
               <img 
+                id="hero-carousel-img"
                 src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1000&q=80" 
-                alt="Sofá contemporáneo de diseño exclusivo" 
+                alt="Sofá Velvet Modular de diseño exclusivo" 
                 fetchpriority="high"
                 width="800"
                 height="1000"
                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               >
 
-              <!-- Tarjeta Flotante Interior -->
-              <div class="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-100 shadow-lg flex items-center justify-between">
-                <div>
-                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-red-600 text-white font-inter mb-1">
+              <!-- Tarjeta Flotante Interior de Oferta -->
+              <div id="hero-carousel-card" class="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-100 shadow-lg flex items-center justify-between transition-opacity duration-500">
+                <div class="pr-2">
+                  <span id="hero-carousel-badge" class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-red-600 text-white font-inter mb-1">
                     OFERTA DEL MES
                   </span>
-                  <p class="font-poppins font-semibold text-xs sm:text-sm text-slate-900">Sofá Velvet Modular</p>
-                  <p class="text-[11px] text-slate-500 font-inter">Alta durabilidad y tapiz suave</p>
+                  <p id="hero-carousel-title" class="font-poppins font-semibold text-xs sm:text-sm text-slate-900 truncate">Sofá Velvet Modular</p>
+                  <p id="hero-carousel-desc" class="text-[11px] text-slate-500 font-inter truncate">Alta durabilidad y tapiz suave antimanchas</p>
                 </div>
-                <div class="text-right">
-                  <span class="block text-[11px] text-slate-400 line-through">Q.4,200.00</span>
-                  <span class="font-poppins font-bold text-sm text-red-600">Q.3,499.00</span>
+                <div class="text-right flex-shrink-0">
+                  <span id="hero-carousel-old-price" class="block text-[11px] text-slate-400 line-through">Q.4,200.00</span>
+                  <span id="hero-carousel-price" class="font-poppins font-bold text-sm text-red-600">Q.3,499.00</span>
                 </div>
               </div>
+            </div>
+
+            <!-- Indicadores de puntos del Carrusel -->
+            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full border border-slate-100 shadow-sm">
+              <span class="hero-dot w-4 h-2 rounded-full bg-red-600 transition-all duration-300"></span>
+              <span class="hero-dot w-2 h-2 rounded-full bg-slate-300 transition-all duration-300"></span>
+              <span class="hero-dot w-2 h-2 rounded-full bg-slate-300 transition-all duration-300"></span>
             </div>
 
             <!-- Insignia Exterior Flotante -->
@@ -3012,34 +3020,19 @@
       </button>
     </div>
 
-    <!-- Items en Carrito -->
+    <!-- Items en Carrito (Renderizados dinámicamente) -->
     <div id="cart-items" class="p-6 overflow-y-auto space-y-4 flex-1">
-      <div class="flex items-center gap-4 pb-4 border-b border-slate-100">
-        <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=200&q=80" alt="Silla Siena" class="w-16 h-16 rounded-xl object-cover">
-        <div class="flex-1">
-          <p class="font-poppins font-medium text-sm text-slate-900">Silla Siena beige</p>
-          <span class="text-xs text-slate-500">Cantidad: 1</span>
-          <p class="font-poppins font-bold text-sm text-red-600 mt-0.5">Q.949.00</p>
-        </div>
-      </div>
-      <div class="flex items-center gap-4 pb-4 border-b border-slate-100">
-        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=200&q=80" alt="Cama Sueño" class="w-16 h-16 rounded-xl object-cover">
-        <div class="flex-1">
-          <p class="font-poppins font-medium text-sm text-slate-900">Cama Sueño Matrimonial</p>
-          <span class="text-xs text-slate-500">Cantidad: 1</span>
-          <p class="font-poppins font-bold text-sm text-red-600 mt-0.5">Q.2,499.00</p>
-        </div>
-      </div>
+      <!-- Se inyecta dinámicamente con JavaScript -->
     </div>
 
     <!-- Subtotal y Finalizar -->
     <div class="p-6 bg-slate-50 border-t border-slate-200 space-y-4">
       <div class="flex items-center justify-between font-poppins">
         <span class="text-sm font-medium text-slate-600">Total con Descuento</span>
-        <span class="font-bold text-lg text-red-600">Q.3,448.00</span>
+        <span id="cart-total-amount" class="font-bold text-lg text-red-600">Q.0.00</span>
       </div>
       
-      <a href="https://wa.me/50247411412?text=Hola%20Cristian,%20deseo%20confirmar%20mi%20pedido%20con%20precio%20de%20promoción" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white py-3.5 rounded-full font-inter font-semibold text-sm shadow-md transition-all">
+      <a id="cart-whatsapp-checkout" href="https://wa.me/50247411412?text=Hola%20Cristian,%20deseo%20confirmar%20mi%20pedido" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white py-3.5 rounded-full font-inter font-semibold text-sm shadow-md transition-all">
         <span>Comprar por WhatsApp con Cristian</span>
         <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
@@ -3935,7 +3928,86 @@
       });
     }
 
-    // Drawer del Carrito
+    // ==========================================
+    // 5. CARRUSEL AUTOMÁTICO EN EL HERO (CADA 4s)
+    // ==========================================
+    const HERO_OFFERS = [
+      {
+        image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1000&q=80',
+        badge: 'OFERTA DEL MES',
+        title: 'Sofá Velvet Modular',
+        desc: 'Alta durabilidad y tapiz suave antimanchas',
+        oldPrice: 'Q.4,200.00',
+        price: 'Q.3,499.00'
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1000&q=80',
+        badge: 'COMBO AHORRO',
+        title: 'Combo Matrimonial Deluxe',
+        desc: 'Cama ortopédica + Ropero de 3 cuerpos',
+        oldPrice: 'Q.4,500.00',
+        price: 'Q.3,599.00'
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1000&q=80',
+        badge: 'EDICIÓN LIMITADA',
+        title: 'Comedor Florencia 6 Sillas',
+        desc: 'Madera tratada y 6 sillas ergonómicas',
+        oldPrice: 'Q.3,999.00',
+        price: 'Q.3,199.00'
+      }
+    ];
+
+    let heroCurrentIndex = 0;
+    const heroContainer = document.getElementById('hero-carousel-container');
+    const heroImg = document.getElementById('hero-carousel-img');
+    const heroBadge = document.getElementById('hero-carousel-badge');
+    const heroTitle = document.getElementById('hero-carousel-title');
+    const heroDesc = document.getElementById('hero-carousel-desc');
+    const heroOldPrice = document.getElementById('hero-carousel-old-price');
+    const heroPrice = document.getElementById('hero-carousel-price');
+    const heroDots = document.querySelectorAll('.hero-dot');
+
+    function updateHeroOffer() {
+      if (!heroContainer || !heroImg) return;
+      
+      // Transición suave fade-out
+      heroContainer.classList.add('opacity-0');
+      
+      setTimeout(() => {
+        heroCurrentIndex = (heroCurrentIndex + 1) % HERO_OFFERS.length;
+        const current = HERO_OFFERS[heroCurrentIndex];
+        
+        heroImg.src = current.image;
+        heroImg.alt = current.title;
+        if (heroBadge) heroBadge.textContent = current.badge;
+        if (heroTitle) heroTitle.textContent = current.title;
+        if (heroDesc) heroDesc.textContent = current.desc;
+        if (heroOldPrice) heroOldPrice.textContent = current.oldPrice;
+        if (heroPrice) heroPrice.textContent = current.price;
+        
+        // Actualizar indicadores de puntos
+        heroDots.forEach((dot, idx) => {
+          if (idx === heroCurrentIndex) {
+            dot.classList.remove('bg-slate-300', 'w-2');
+            dot.classList.add('bg-red-600', 'w-4');
+          } else {
+            dot.classList.remove('bg-red-600', 'w-4');
+            dot.classList.add('bg-slate-300', 'w-2');
+          }
+        });
+
+        // Transición suave fade-in
+        heroContainer.classList.remove('opacity-0');
+      }, 500);
+    }
+
+    // Intervalo cada 4 segundos
+    setInterval(updateHeroOffer, 4000);
+
+    // ==========================================
+    // 6. DRAWER Y LÓGICA COMPLETA DEL CARRITO
+    // ==========================================
     const cartBtn = document.getElementById('cart-btn');
     const cartDrawer = document.getElementById('cart-drawer');
     const cartBackdrop = document.getElementById('cart-drawer-backdrop');
@@ -3959,7 +4031,139 @@
     if (closeCart) closeCart.addEventListener('click', closeCartDrawer);
     if (cartBackdrop) cartBackdrop.addEventListener('click', closeCartDrawer);
 
-    // Sistema de Notificaciones Toast
+    // Array reactivo del carrito
+    let cart = [
+      {
+        id: 'cama-sueno-matrimonial',
+        title: 'Cama Sueño Matrimonial',
+        price: 'Q2,199',
+        numericPrice: 2199.00,
+        image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=200&q=80',
+        quantity: 1
+      },
+      {
+        id: 'ropero-fiesta-3p',
+        title: 'Ropero Fiesta 3 Puertas',
+        price: 'Q1,899',
+        numericPrice: 1899.00,
+        image: 'https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=200&q=80',
+        quantity: 1
+      }
+    ];
+
+    function renderCart() {
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartCountEl = document.getElementById('cart-count');
+      const cartTotalEl = document.getElementById('cart-total-amount');
+      const checkoutWhatsappBtn = document.getElementById('cart-whatsapp-checkout');
+
+      if (!cartItemsContainer) return;
+
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + (item.numericPrice * item.quantity), 0);
+
+      if (cartCountEl) {
+        cartCountEl.textContent = totalItems;
+        if (totalItems > 0) {
+          cartCountEl.classList.remove('hidden');
+        } else {
+          cartCountEl.classList.add('hidden');
+        }
+      }
+
+      if (cartTotalEl) {
+        cartTotalEl.textContent = 'Q.' + totalPrice.toLocaleString('es-GT', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+          <div class="text-center py-12 text-slate-400">
+            <svg class="w-12 h-12 mx-auto stroke-1 text-slate-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119.993z"/>
+            </svg>
+            <p class="font-poppins font-medium text-sm text-slate-600">Tu carrito está vacío</p>
+            <p class="text-xs text-slate-400 mt-1">Explora nuestras ofertas y añade tus muebles favoritos.</p>
+          </div>
+        `;
+        if (checkoutWhatsappBtn) {
+          checkoutWhatsappBtn.href = "https://wa.me/50247411412?text=Hola%20Cristian,%20quisiera%20asesoría%20sobre%20muebles";
+        }
+        return;
+      }
+
+      let htmlContent = '';
+      cart.forEach((item, index) => {
+        const itemSubtotal = (item.numericPrice * item.quantity).toLocaleString('es-GT', { minimumFractionDigits: 2 });
+        htmlContent += `
+          <div class="flex items-center gap-3 pb-4 border-b border-slate-100 group">
+            <img src="${item.image}" alt="${item.title}" class="w-16 h-16 rounded-xl object-cover border border-slate-100 flex-shrink-0">
+            <div class="flex-1 min-w-0">
+              <p class="font-poppins font-medium text-sm text-slate-900 truncate">${item.title}</p>
+              <div class="flex items-center gap-2 mt-0.5">
+                <span class="text-xs text-slate-400">Cant: ${item.quantity}</span>
+                <span class="text-xs text-slate-300">&bull;</span>
+                <span class="font-poppins font-bold text-sm text-red-600">Q.${itemSubtotal}</span>
+              </div>
+            </div>
+            <!-- Botón de Eliminar con ícono SVG de bote de basura (Trash) -->
+            <button onclick="removeFromCart(${index})" aria-label="Eliminar ${item.title}" class="p-2 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors focus:outline-none flex-shrink-0" title="Eliminar del carrito">
+              <svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/>
+              </svg>
+            </button>
+          </div>
+        `;
+      });
+
+      cartItemsContainer.innerHTML = htmlContent;
+
+      if (checkoutWhatsappBtn) {
+        const orderSummary = cart.map(i => `${i.quantity}x ${i.title} (${i.price})`).join(', ');
+        const waMsg = `Hola Cristian Garcia, deseo confirmar mi pedido desde la web: ${orderSummary}. Total con Descuento: Q.${totalPrice.toLocaleString('es-GT', { minimumFractionDigits: 2 })}. ¿Cuál es el tiempo de entrega?`;
+        checkoutWhatsappBtn.href = `https://wa.me/50247411412?text=${encodeURIComponent(waMsg)}`;
+      }
+    }
+
+    function addToCart(title, price, customImg) {
+      let product = Object.values(PRODUCTS_DATA).find(p => p.title === title || p.id === title);
+      const imgUrl = customImg || (product ? product.image : 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=200&q=80');
+      const cleanTitle = product ? product.title : title;
+      const cleanPrice = product ? product.price : price;
+      const numPrice = parseFloat(String(cleanPrice).replace(/[^0-9.]/g, '')) || 0;
+
+      const existingIndex = cart.findIndex(i => i.title === cleanTitle);
+      if (existingIndex > -1) {
+        cart[existingIndex].quantity++;
+      } else {
+        cart.push({
+          id: product ? product.id : ('prod-' + Date.now()),
+          title: cleanTitle,
+          price: cleanPrice,
+          numericPrice: numPrice,
+          image: imgUrl,
+          quantity: 1
+        });
+      }
+
+      renderCart();
+      showToast(`"${cleanTitle}" añadido al carrito (${cleanPrice})`);
+    }
+
+    function removeFromCart(index) {
+      if (index >= 0 && index < cart.length) {
+        const removedItem = cart[index];
+        cart.splice(index, 1);
+        renderCart();
+        showToast(`"${removedItem.title}" eliminado del carrito`);
+      }
+    }
+
+    // Inicializar renderizado del carrito al cargar
+    renderCart();
+
+    // ==========================================
+    // 7. TOAST NOTIFICACIONES
+    // ==========================================
     const toast = document.getElementById('toast');
     const toastMsg = document.getElementById('toast-message');
     let toastTimeout;
@@ -3974,32 +4178,34 @@
       }, 2800);
     }
 
-    // Carrito y Contador Interactivo
-    let currentCartCount = 2;
-    const cartCountEl = document.getElementById('cart-count');
-
-    function addToCart(title, price) {
-      currentCartCount++;
-      if (cartCountEl) cartCountEl.textContent = currentCartCount;
-      showToast(`"${title}" añadido al carrito (${price})`);
-    }
-
-    // Favoritos Toggle
+    // ==========================================
+    // 8. FAVORITOS TOGGLE (ANIMACIÓN BOUNCE/SCALE)
+    // ==========================================
     let wishlistCount = 0;
     const wishlistBadge = document.getElementById('wishlist-badge');
 
     function toggleWishlist(button, title) {
       const svg = button.querySelector('svg');
+      if (!svg) return;
+
       const isFilled = svg.getAttribute('fill') === 'currentColor';
-      
+
+      // Animación de rebote/escala rápida con Tailwind
+      button.classList.add('scale-125');
+      setTimeout(() => {
+        button.classList.remove('scale-125');
+      }, 250);
+
       if (isFilled) {
         svg.setAttribute('fill', 'none');
         svg.classList.remove('text-red-600');
+        svg.classList.add('text-slate-600');
         wishlistCount = Math.max(0, wishlistCount - 1);
-        showToast('Removido de favoritos');
+        showToast(`"${title}" removido de favoritos`);
       } else {
         svg.setAttribute('fill', 'currentColor');
         svg.classList.add('text-red-600');
+        svg.classList.remove('text-slate-600');
         wishlistCount++;
         showToast(`"${title}" guardado en tus favoritos`);
       }
