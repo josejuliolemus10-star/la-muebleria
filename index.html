@@ -2013,17 +2013,19 @@
         </svg>
         <h3 class="font-poppins font-bold text-lg text-blue-900">Carrito de Promociones</h3>
       </div>
-      <!-- Botón de Cerrar Carrito (Posicionamiento Absoluto y z-[99999]) -->
+      <!-- Botón de Cerrar Carrito (Hitbox Gigante w-16 h-16 con Círculo Visual w-8 h-8) -->
       <button 
         type="button" 
         id="btn-cerrar-carrito" 
         onclick="document.getElementById('cart-drawer').classList.add('translate-x-full'); document.getElementById('cart-drawer').classList.remove('translate-x-0'); document.getElementById('cart-drawer-backdrop').classList.add('hidden'); document.body.classList.remove('overflow-hidden');" 
         aria-label="Cerrar carrito" 
-        class="absolute top-4 right-4 z-[99999] p-2 bg-white rounded-full shadow-md pointer-events-auto cursor-pointer text-red-600 hover:text-red-700 hover:bg-gray-50 border border-gray-100 transition-all focus:outline-none"
+        class="absolute top-0 right-0 w-16 h-16 flex items-center justify-center cursor-pointer z-[99999] outline-none group bg-transparent"
       >
-        <svg class="w-5 h-5 stroke-[2] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
+        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md text-gray-500 group-hover:bg-gray-100 group-hover:text-red-500 transition-all pointer-events-none border border-gray-100">
+          <svg class="w-4 h-4 stroke-[2] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </div>
       </button>
     </div>
 
