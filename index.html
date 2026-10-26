@@ -6,6 +6,17 @@
   <title>La Mueblería | Mobiliario de Alta Gama y Promociones Especiales</title>
   <meta name="description" content="La Mueblería Guatemala - Muebles de alta gama, salas, camas, roperos y comedores con ofertas exclusivas del mes y precios de liquidación.">
 
+  <!-- Control de inicio: Siempre abrir en el tope (Inicio) y deshabilitar restauración de scroll hacia secciones inferiores -->
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    if (window.location.hash && window.location.hash !== '#hero') {
+      history.replaceState(null, document.title, window.location.pathname + window.location.search);
+    }
+    window.scrollTo(0, 0);
+  </script>
+
   <!-- Google Fonts: Poppins (Títulos) & Inter (Textos) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -198,7 +209,7 @@
     <div class="max-w-7xl mx-auto px-3 sm:px-8 lg:px-12 h-20 flex items-center justify-between gap-2">
       
       <!-- Logo Tipográfico Responsivo en Rojo Vivo a la izquierda con Lilita One -->
-      <a href="#" class="group flex flex-col justify-center focus:outline-none min-w-0 flex-1 sm:flex-initial">
+      <a href="#hero" class="group flex flex-col justify-center focus:outline-none min-w-0 flex-1 sm:flex-initial">
         <span style="font-family: 'Lilita One', cursive;" class="text-xl sm:text-3xl md:text-4xl tracking-wide text-red-600 group-hover:text-red-700 transition-colors duration-200 truncate">
           LA MUEBLERÍA
         </span>
@@ -3792,6 +3803,24 @@
         : 'Guarda tus muebles preferidos haciendo clic en el icono de corazon en cada producto'
       );
     }
+
+    // ==========================================
+    // 9. GARANTIZAR INICIO EN EL TOPE ABSOLUTO
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    });
+
+    window.addEventListener('load', () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }, 60);
+    });
+
+    window.addEventListener('pageshow', () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    });
   </script>
 </body>
 </html>
